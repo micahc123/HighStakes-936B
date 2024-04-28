@@ -1,30 +1,31 @@
 #include "main.h"
 
-using namespace okapi;
+
+auto leftMotors = MotorGroup({1, 3, 5});
+auto rightMotors = MotorGroup({2, 4, 6});
 
 auto drive = ChassisControllerBuilder()
-    .withMotors({1, 3}, {2, 4}) 
+    .withMotors(leftMotors, rightMotors) 
     .withDimensions(AbstractMotor::gearset::blue, {{4_in, 10_in}, imev5BlueTPR})
     .build();
 
 Controller master;
 
-pros::Rotation rotationSensor(5);
+pros::Rotation rotationSensor(7);
 
 void opcontrol() {
   while (true) {
-    double forward = -master.getAnalog(ControllerAnalog::leftY);
-    double strafe = master.getAnalog(ControllerAnalog::leftX);
-    double rotate = master.getAnalog(ControllerAnalog::rightX);
+    double left = -master.getAnalog(ControllerAnalog::leftY);
+    double right = -master.getAnalog(ControllerAnalog::rightY);
 
     double theta = rotationSensor.get_position();
 
     double angleRad = theta * M_PI / 180.0;
 
-    double fieldOrientedForward = forward * cos(angleRad) - strafe * sin(angleRad);
-    double fieldOrientedStrafe = forward * sin(angleRad) + strafe * cos(angleRad);
+    double fieldOrientedLeft = left * cos(angleRad) - right * sin(angleRad);
+    double fieldOrientedRight = left * sin(angleRad) + right * cos(angleRad);
 
-    drive->getModel()->arcade(fieldOrientedForward, fieldOrientedStrafe, rotate);
+    drive->getModel()->tank(fieldOrientedLeft, fieldOrientedRight);
 
     pros::delay(20);
   }
