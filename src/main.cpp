@@ -13,6 +13,7 @@ Controller master;
 
 pros::Rotation rotationSensor(7);
 
+// Tank Drive
 void opcontrol() {
   while (true) {
     double left = -master.getAnalog(ControllerAnalog::leftY);
@@ -30,3 +31,26 @@ void opcontrol() {
     pros::delay(20);
   }
 }
+
+/* Arcade Drive
+void opcontrol() {
+  while (true) {
+    double forward = -master.getAnalog(ControllerAnalog::leftY);
+    double rotate = master.getAnalog(ControllerAnalog::rightX);
+
+    double theta = rotationSensor.get_position();
+
+    double angleRad = theta * M_PI / 180.0;
+
+    double fieldOrientedForward = forward * cos(angleRad) - rotate * sin(angleRad);
+    double fieldOrientedRotate = forward * sin(angleRad) + rotate * cos(angleRad);
+
+    double left = fieldOrientedForward + fieldOrientedRotate;
+    double right = fieldOrientedForward - fieldOrientedRotate;
+
+    drive->getModel()->tank(left, right);
+
+    pros::delay(20);
+  }
+}
+*/
