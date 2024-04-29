@@ -1,14 +1,13 @@
 #include "main.h"
 
 
-auto leftMotors = MotorGroup({1, 3, 5});
-auto rightMotors = MotorGroup({2, 4, 6});
+auto leftMotors = MotorGroup({1, 2}); 
+auto rightMotors = MotorGroup({3, 4});
 
 auto drive = ChassisControllerBuilder()
     .withMotors(leftMotors, rightMotors) 
     .withDimensions(AbstractMotor::gearset::blue, {{4_in, 10_in}, imev5BlueTPR})
     .build();
-
 Controller master;
 
 pros::Rotation rotationSensor(7);
