@@ -18,6 +18,11 @@ void opcontrol() {
     double left = -master.getAnalog(ControllerAnalog::leftY);
     double right = -master.getAnalog(ControllerAnalog::rightY);
 
+    if (master.getDigital(ControllerDigital::R1)) {
+      left = 100;
+      right = 100;
+    }
+
     double theta = rotationSensor.get_position();
 
     double angleRad = theta * M_PI / 180.0;
