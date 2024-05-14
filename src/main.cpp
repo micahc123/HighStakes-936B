@@ -51,7 +51,17 @@ void opcontrol() {
     movement(left, right);
 
     //Macros
-    qcf();
+    //qcf();
+
+    //Set brakes
+    if (master.getDigital(ControllerDigital::L1)) {
+        leftMotors.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+        rightMotors.setBrakeMode(okapi::AbstractMotor::brakeMode::brake);
+    } else {
+        leftMotors.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+        rightMotors.setBrakeMode(okapi::AbstractMotor::brakeMode::coast);
+    }
+
     
     //Pneumatics
     pneumatics(pistonState);
