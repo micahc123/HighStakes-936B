@@ -24,7 +24,8 @@ auto rightMotors = MotorGroup({RIGHT_MOTOR_1, RIGHT_MOTOR_2});
 auto drive = ChassisControllerBuilder()
     .withMotors(leftMotors, rightMotors) 
     .withDimensions(AbstractMotor::gearset::blue, {{4_in, 10_in}, imev5BlueTPR})
-    .build();
+    .withOdometry()
+    .buildOdometry();
 
 
 //controller, joystick state, and piston is initialized here
@@ -40,6 +41,19 @@ void pneumatics(bool& state){
     piston.set_value(state);
   }
 }
+//odom test
+pros::Task positionTrackingTask([](){
+    while (true) {
+        auto state = drive->getState();
+
+        // Print the state to the VEX brain
+        pros::lcd::print(0, "x pos: %.2f", state.x.convert(inch));
+        pros::lcd::print(1, "y pos: %.2f", state.y.convert(inch));
+        pros::lcd::print(2, "Theta: %.2f", state.theta.convert(degree));
+
+        pros::delay(10);
+    }
+});
 //main loop
 void opcontrol() {
   //initital state
@@ -48,10 +62,14 @@ void opcontrol() {
   while (true) {
     double left = -master.getAnalog(ControllerAnalog::leftY);
     double right = master.getAnalog(ControllerAnalog::rightY);
+    //movement
     movement(left, right);
-
+    //Pneumatics
+    pneumatics(pistonState);
     //Macros
     //qcf();
+
+   
 
     //Set brakes
     if (master.getDigital(ControllerDigital::L1)) {
@@ -63,8 +81,7 @@ void opcontrol() {
     }
 
     
-    //Pneumatics
-    pneumatics(pistonState);
+    
 
     pros::delay(20);
   }
@@ -75,7 +92,10 @@ void movement(double left, double right){
     drive->getModel()->tank(left, right);
 }
 
-
+void autonomous(){
+  Point point1 = Point{0_ft, 0_ft};
+  drive->driveToPoint(point1);
+}
 
 
 
