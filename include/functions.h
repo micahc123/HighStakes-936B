@@ -1,69 +1,83 @@
-// robot_functions.h
+// Purpose: Contains all the functions used in the robot code
+
+#include "main.h"
+#include "setup.h"
 
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-#include "main.h"
 
 
-auto drive = ChassisControllerBuilder()
-    .withMotors(leftMotors, rightMotors) 
-    .withDimensions(AbstractMotor::gearset::blue, {{4_in, 10_in}, imev5BlueTPR})
-    .withOdometry()
-    .buildOdometry();
 
-Controller master;
-pros::ADIDigitalOut piston(PNEUMATICS_PORT);
-
+bool wasPistonPressed = false; 
+bool pistonState = false; 
 void pneumatics()
 {
-  if(master.getDigital(ControllerDigital::A)){
-      piston.set_value(true);
+    bool isPistonPressed = master.getDigital(ControllerDigital::A);
+    if(isPistonPressed && !wasPistonPressed){
+        pistonState = !pistonState;
+        piston.set_value(pistonState ? 1 : 0);
     }
-    else if(master.getDigital(ControllerDigital::B)){
-      piston.set_value(false);
-    }
+    wasPistonPressed = isPistonPressed;
 }
+bool wasIntakePressed = false; 
+bool intakeState = false; 
 
-void intake(){
+void intake()
+{
+    bool isIntakePressed = master.getDigital(ControllerDigital::R1);
 
-  if(master.getDigital(ControllerDigital::R1)){
-      intakeMotor1.moveVoltage(12000);
-      intakeMotor2.moveVoltage(-12000);
+    if(isIntakePressed && !wasIntakePressed){
+        intakeState = !intakeState;
     }
-    else if(master.getDigital(ControllerDigital::R2)){
-      intakeMotor1.moveVoltage(-12000);
-      intakeMotor2.moveVoltage(12000);
+    if(intakeState){
+        intakeMotor1.moveVoltage(6000);
+        intakeMotor2.moveVoltage(-6000);
     }
     else{
-      intakeMotor1.moveVoltage(0);
-      intakeMotor2.moveVoltage(0);
+        intakeMotor1.moveVoltage(0);
+        intakeMotor2.moveVoltage(0);
     }
+
+    wasIntakePressed = isIntakePressed;
 }
 
-void climbing(){
+bool wasClimbing = false; 
+bool climbState = false; 
 
-  if(master.getDigital(ControllerDigital::L1)){
-      climbingMotor1.moveVoltage(6000);
-      climbingMotor2.moveVoltage(-6000);
+void climbing()
+{
+    bool isClimbingPressed = master.getDigital(ControllerDigital::L1);
+
+    if(isClimbingPressed && !wasClimbing){
+        climbState = !climbState;
     }
-    else if(master.getDigital(ControllerDigital::L2)){
-      climbingMotor1.moveVoltage(-6000);
-      climbingMotor2.moveVoltage(6000);
+
+    if(climbState){
+        climbingMotor1.moveVoltage(3000);
+        climbingMotor2.moveVoltage(-3000);
     }
     else{
-      climbingMotor1.moveVoltage(100); 
-      climbingMotor2.moveVoltage(-100); 
+        climbingMotor1.setBrakeMode(AbstractMotor::brakeMode::hold);
+        climbingMotor2.setBrakeMode(AbstractMotor::brakeMode::hold);
     }
+
+    wasClimbing = isClimbingPressed;
 }
+
+
 void movement(){
-    //movement values
     double left = -master.getAnalog(ControllerAnalog::leftY);
     double right = master.getAnalog(ControllerAnalog::rightY);
 
-
-    //base movement
-    drive->getModel()->tank(left, right);
-
+    if (left == 0 && right == 0) {
+        leftMotors.setBrakeMode(AbstractMotor::brakeMode::hold);
+        rightMotors.setBrakeMode(AbstractMotor::brakeMode::hold);
+    } else {
+        drive->getModel()->tank(left, right);
+        
+        leftMotors.setBrakeMode(AbstractMotor::brakeMode::coast);
+        rightMotors.setBrakeMode(AbstractMotor::brakeMode::coast);
+    }
 }
-#endif // ROBOT_FUNCTIONS_H
+#endif 
