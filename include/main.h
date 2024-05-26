@@ -67,6 +67,34 @@ void initialize(void);
 void disabled(void);
 void competition_initialize(void);
 void opcontrol(void);
+void pneumatics(void);
+void climbing(void);
+void intake(void);
+void movement(void);
+
+//ports
+#define PNEUMATICS_PORT 'A'
+#define LEFT_MOTOR_1 11
+#define LEFT_MOTOR_2 12
+#define RIGHT_MOTOR_1 1
+#define RIGHT_MOTOR_2 2
+#define INTAKE_MOTOR_1 9
+#define INTAKE_MOTOR_2 10
+#define CLIMBING_MOTOR_1 13
+#define CLIMBING_MOTOR_2 14
+
+//motor groups initialized here 
+auto leftMotors = MotorGroup({LEFT_MOTOR_1, LEFT_MOTOR_2}); 
+auto rightMotors = MotorGroup({RIGHT_MOTOR_1, RIGHT_MOTOR_2});
+auto intakeMotor1 = okapi::Motor(INTAKE_MOTOR_1);
+auto intakeMotor2 = okapi::Motor(INTAKE_MOTOR_2);
+auto climbingMotor1 = okapi::Motor(CLIMBING_MOTOR_1);
+auto climbingMotor2= okapi::Motor(CLIMBING_MOTOR_2);
+
+
+auto climbingMotors =  MotorGroup({CLIMBING_MOTOR_1, CLIMBING_MOTOR_2});
+
+
 #ifdef __cplusplus
 }
 #endif
