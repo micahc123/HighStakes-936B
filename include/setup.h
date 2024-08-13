@@ -3,7 +3,7 @@
 #include "main.h"
 
 //ports
-#define PNEUMATICS_PORT 'A'
+#define PNEUMATICS_PORT 'H'
 #define LEFT_MOTOR_1 11
 #define LEFT_MOTOR_2 12
 #define RIGHT_MOTOR_1 1

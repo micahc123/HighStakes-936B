@@ -1,70 +1,66 @@
-// Purpose: Contains all the functions used in the robot code
-
 #include "main.h"
 #include "setup.h"
 
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
+bool pistonToggle = false;
+bool intakeToggle = false;
+bool climbingToggle = false;
 
-
-
-bool wasPistonPressed = false; 
-bool pistonState = false; 
 void pneumatics()
 {
-    bool isPistonPressed = master.getDigital(ControllerDigital::A);
-    if(isPistonPressed && !wasPistonPressed){
-        pistonState = !pistonState;
-        piston.set_value(pistonState ? 1 : 0);
+    bool isPistonButtonPressed = master.getDigital(ControllerDigital::A);
+    
+    if (isPistonButtonPressed) {
+        pistonToggle = !pistonToggle;
+        while (master.getDigital(ControllerDigital::A)) {
+            pros::delay(1);
+        }
     }
-    wasPistonPressed = isPistonPressed;
+    
+    piston.set_value(pistonToggle ? 1 : 0);
 }
-bool wasIntakePressed = false; 
-bool intakeState = false; 
 
 void intake()
 {
-    bool isIntakePressed = master.getDigital(ControllerDigital::R1);
-
-    if(isIntakePressed && !wasIntakePressed){
-        intakeState = !intakeState;
+    bool isIntakeButtonPressed = master.getDigital(ControllerDigital::R1);
+    
+    if (isIntakeButtonPressed) {
+        intakeToggle = !intakeToggle;
+        while (master.getDigital(ControllerDigital::R1)) {
+            pros::delay(1);
+        }
     }
-    if(intakeState){
+    
+    if (intakeToggle) {
         intakeMotor1.moveVoltage(6000);
         intakeMotor2.moveVoltage(-6000);
-    }
-    else{
+    } else {
         intakeMotor1.moveVoltage(0);
         intakeMotor2.moveVoltage(0);
     }
-
-    wasIntakePressed = isIntakePressed;
 }
-
-bool wasClimbing = false; 
-bool climbState = false; 
 
 void climbing()
 {
-    bool isClimbingPressed = master.getDigital(ControllerDigital::L1);
-
-    if(isClimbingPressed && !wasClimbing){
-        climbState = !climbState;
+    bool isClimbingButtonPressed = master.getDigital(ControllerDigital::L1);
+    
+    if (isClimbingButtonPressed) {
+        climbingToggle = !climbingToggle;
+        while (master.getDigital(ControllerDigital::L1)) {
+            pros::delay(1);
+        }
     }
-
-    if(climbState){
-        climbingMotor1.moveVoltage(3000);
-        climbingMotor2.moveVoltage(-3000);
+    
+    if (climbingToggle) {
+        climbingMotor1.moveVoltage(6000);
+        climbingMotor2.moveVoltage(6000);
+    } else {
+        climbingMotor1.moveVoltage(0);
+        climbingMotor2.moveVoltage(0);
     }
-    else{
-        climbingMotor1.setBrakeMode(AbstractMotor::brakeMode::hold);
-        climbingMotor2.setBrakeMode(AbstractMotor::brakeMode::hold);
-    }
-
-    wasClimbing = isClimbingPressed;
 }
-
 
 void movement(){
     double left = -master.getAnalog(ControllerAnalog::leftY);
@@ -80,4 +76,5 @@ void movement(){
         rightMotors.setBrakeMode(AbstractMotor::brakeMode::coast);
     }
 }
-#endif 
+
+#endif

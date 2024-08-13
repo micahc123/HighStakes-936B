@@ -199,7 +199,8 @@ bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/okapi/api/units/QPressure.hpp \
  include/okapi/api/units/QTorque.hpp include/okapi/api/units/QVolume.hpp \
  include/okapi/impl/util/configurableTimeUtilFactory.hpp \
- include/okapi/impl/util/rate.hpp include/functions.h include/main.h
+ include/okapi/impl/util/rate.hpp include/functions.h include/main.h \
+ include/setup.h
 include/main.h:
 include/api.h:
 include/pros/adi.h:
@@ -490,3 +491,4 @@ include/okapi/impl/util/configurableTimeUtilFactory.hpp:
 include/okapi/impl/util/rate.hpp:
 include/functions.h:
 include/main.h:
+include/setup.h:

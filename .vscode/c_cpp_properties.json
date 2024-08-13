@@ -4,7 +4,8 @@
       "name": "PROS Project",
       "includePath": [
         "${workspaceFolder}/**",
-        "/Users/micahchen/Documents/GitHub/HighStakes-936B/include"
+        "/Users/micahchen/Documents/GitHub/HighStakes-936B/include",
+        "/Users/micahchen/Desktop/HighStakes-936B/include"
       ],
       "defines": [
         "_DEBUG",
@@ -20,7 +21,7 @@
       ],
       "browse": {
         "path": [
-          "/Users/micahchen/Documents/GitHub/HighStakes-936B"
+          "/Users/micahchen/Desktop/HighStakes-936B"
         ],
         "limitSymbolsToIncludedHeaders": true,
         "databaseFilename": ""

@@ -21,6 +21,7 @@
 
 #ifdef __cplusplus
 #include <cerrno>
+#include <bits/stdc++.h>
 #include <cmath>
 #include <cstdbool>
 #include <cstddef>
