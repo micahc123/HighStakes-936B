@@ -4,9 +4,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-bool pistonToggle = false;
-bool intakeToggle = false;
-bool climbingToggle = false;
+bool pistonToggle = false, intakeToggle = false, climbingToggle = false;
 
 void pneumatics()
 {
