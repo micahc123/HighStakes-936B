@@ -75,7 +75,23 @@ bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/pros/rtos.hpp include/pros/rtos.h include/pros/optical.hpp \
  include/pros/optical.h include/pros/rotation.hpp include/pros/rotation.h \
  include/pros/rtos.hpp include/pros/screen.hpp include/pros/screen.h \
- include/pros/vision.hpp include/pros/vision.h include/okapi/api.hpp \
+ include/pros/vision.hpp include/pros/vision.h \
+ include/okapi/squiggles/squiggles.hpp \
+ include/okapi/squiggles/geometry/controlvector.hpp \
+ include/okapi/squiggles/geometry/pose.hpp \
+ include/okapi/squiggles/math/utils.hpp \
+ include/okapi/squiggles/geometry/pose.hpp \
+ include/okapi/squiggles/geometry/profilepoint.hpp \
+ include/okapi/squiggles/geometry/controlvector.hpp \
+ include/okapi/squiggles/physicalmodel/passthroughmodel.hpp \
+ include/okapi/squiggles/physicalmodel/physicalmodel.hpp \
+ include/okapi/squiggles/constraints.hpp \
+ include/okapi/squiggles/geometry/pose.hpp \
+ include/okapi/squiggles/physicalmodel/physicalmodel.hpp \
+ include/okapi/squiggles/physicalmodel/tankmodel.hpp \
+ include/okapi/squiggles/constraints.hpp include/okapi/squiggles/io.hpp \
+ include/okapi/squiggles/spline.hpp \
+ include/okapi/squiggles/math/quinticpolynomial.hpp include/okapi/api.hpp \
  include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp \
  include/okapi/api/chassis/controller/chassisController.hpp \
  include/okapi/api/chassis/controller/chassisScales.hpp \
@@ -131,22 +147,6 @@ bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/okapi/api/control/async/asyncLinearMotionProfileController.hpp \
  include/okapi/api/control/util/pathfinderUtil.hpp \
  include/okapi/api/units/QAngularSpeed.hpp \
- include/okapi/squiggles/squiggles.hpp \
- include/okapi/squiggles/geometry/controlvector.hpp \
- include/okapi/squiggles/geometry/pose.hpp \
- include/okapi/squiggles/math/utils.hpp \
- include/okapi/squiggles/geometry/pose.hpp \
- include/okapi/squiggles/geometry/profilepoint.hpp \
- include/okapi/squiggles/geometry/controlvector.hpp \
- include/okapi/squiggles/physicalmodel/passthroughmodel.hpp \
- include/okapi/squiggles/physicalmodel/physicalmodel.hpp \
- include/okapi/squiggles/constraints.hpp \
- include/okapi/squiggles/geometry/pose.hpp \
- include/okapi/squiggles/physicalmodel/physicalmodel.hpp \
- include/okapi/squiggles/physicalmodel/tankmodel.hpp \
- include/okapi/squiggles/constraints.hpp include/okapi/squiggles/io.hpp \
- include/okapi/squiggles/spline.hpp \
- include/okapi/squiggles/math/quinticpolynomial.hpp \
  include/okapi/api/control/async/asyncMotionProfileController.hpp \
  include/okapi/api/control/async/asyncPosPidController.hpp \
  include/okapi/api/control/async/asyncWrapper.hpp \
@@ -199,7 +199,18 @@ bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/okapi/api/units/QPressure.hpp \
  include/okapi/api/units/QTorque.hpp include/okapi/api/units/QVolume.hpp \
  include/okapi/impl/util/configurableTimeUtilFactory.hpp \
- include/okapi/impl/util/rate.hpp include/functions.h include/main.h \
+ include/okapi/impl/util/rate.hpp include/setup.h include/main.h \
+ include/lemlib/api.hpp include/lemlib/pid.hpp include/lemlib/pose.hpp \
+ include/lemlib/util.hpp include/lemlib/chassis/chassis.hpp \
+ include/pros/motors.hpp include/pros/imu.hpp include/lemlib/asset.hpp \
+ include/lemlib/chassis/trackingWheel.hpp include/pros/adi.hpp \
+ include/pros/rotation.hpp include/lemlib/exitcondition.hpp \
+ include/lemlib/driveCurve.hpp include/lemlib/logger/logger.hpp \
+ include/fmt/core.h include/fmt/format.h include/fmt/core.h \
+ include/fmt/format-inl.h include/lemlib/logger/baseSink.hpp \
+ include/fmt/args.h include/lemlib/logger/message.hpp \
+ include/lemlib/logger/infoSink.hpp \
+ include/lemlib/logger/telemetrySink.hpp include/functions.h \
  include/setup.h
 include/main.h:
 include/api.h:
@@ -354,6 +365,23 @@ include/pros/screen.hpp:
 include/pros/screen.h:
 include/pros/vision.hpp:
 include/pros/vision.h:
+include/okapi/squiggles/squiggles.hpp:
+include/okapi/squiggles/geometry/controlvector.hpp:
+include/okapi/squiggles/geometry/pose.hpp:
+include/okapi/squiggles/math/utils.hpp:
+include/okapi/squiggles/geometry/pose.hpp:
+include/okapi/squiggles/geometry/profilepoint.hpp:
+include/okapi/squiggles/geometry/controlvector.hpp:
+include/okapi/squiggles/physicalmodel/passthroughmodel.hpp:
+include/okapi/squiggles/physicalmodel/physicalmodel.hpp:
+include/okapi/squiggles/constraints.hpp:
+include/okapi/squiggles/geometry/pose.hpp:
+include/okapi/squiggles/physicalmodel/physicalmodel.hpp:
+include/okapi/squiggles/physicalmodel/tankmodel.hpp:
+include/okapi/squiggles/constraints.hpp:
+include/okapi/squiggles/io.hpp:
+include/okapi/squiggles/spline.hpp:
+include/okapi/squiggles/math/quinticpolynomial.hpp:
 include/okapi/api.hpp:
 include/okapi/api/chassis/controller/chassisControllerIntegrated.hpp:
 include/okapi/api/chassis/controller/chassisController.hpp:
@@ -416,23 +444,6 @@ include/okapi/impl/util/timeUtilFactory.hpp:
 include/okapi/api/control/async/asyncLinearMotionProfileController.hpp:
 include/okapi/api/control/util/pathfinderUtil.hpp:
 include/okapi/api/units/QAngularSpeed.hpp:
-include/okapi/squiggles/squiggles.hpp:
-include/okapi/squiggles/geometry/controlvector.hpp:
-include/okapi/squiggles/geometry/pose.hpp:
-include/okapi/squiggles/math/utils.hpp:
-include/okapi/squiggles/geometry/pose.hpp:
-include/okapi/squiggles/geometry/profilepoint.hpp:
-include/okapi/squiggles/geometry/controlvector.hpp:
-include/okapi/squiggles/physicalmodel/passthroughmodel.hpp:
-include/okapi/squiggles/physicalmodel/physicalmodel.hpp:
-include/okapi/squiggles/constraints.hpp:
-include/okapi/squiggles/geometry/pose.hpp:
-include/okapi/squiggles/physicalmodel/physicalmodel.hpp:
-include/okapi/squiggles/physicalmodel/tankmodel.hpp:
-include/okapi/squiggles/constraints.hpp:
-include/okapi/squiggles/io.hpp:
-include/okapi/squiggles/spline.hpp:
-include/okapi/squiggles/math/quinticpolynomial.hpp:
 include/okapi/api/control/async/asyncMotionProfileController.hpp:
 include/okapi/api/control/async/asyncPosPidController.hpp:
 include/okapi/api/control/async/asyncWrapper.hpp:
@@ -489,6 +500,30 @@ include/okapi/api/units/QTorque.hpp:
 include/okapi/api/units/QVolume.hpp:
 include/okapi/impl/util/configurableTimeUtilFactory.hpp:
 include/okapi/impl/util/rate.hpp:
-include/functions.h:
+include/setup.h:
 include/main.h:
+include/lemlib/api.hpp:
+include/lemlib/pid.hpp:
+include/lemlib/pose.hpp:
+include/lemlib/util.hpp:
+include/lemlib/chassis/chassis.hpp:
+include/pros/motors.hpp:
+include/pros/imu.hpp:
+include/lemlib/asset.hpp:
+include/lemlib/chassis/trackingWheel.hpp:
+include/pros/adi.hpp:
+include/pros/rotation.hpp:
+include/lemlib/exitcondition.hpp:
+include/lemlib/driveCurve.hpp:
+include/lemlib/logger/logger.hpp:
+include/fmt/core.h:
+include/fmt/format.h:
+include/fmt/core.h:
+include/fmt/format-inl.h:
+include/lemlib/logger/baseSink.hpp:
+include/fmt/args.h:
+include/lemlib/logger/message.hpp:
+include/lemlib/logger/infoSink.hpp:
+include/lemlib/logger/telemetrySink.hpp:
+include/functions.h:
 include/setup.h:

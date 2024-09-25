@@ -1,8 +1,9 @@
 #ifndef SETUP_H
-#define SETUO_H
+#define SETUP_H
 #include "main.h"
+#include "lemlib/api.hpp"
 
-//ports
+// Ports
 #define PNEUMATICS_PORT 'H'
 #define LEFT_MOTOR_1 11
 #define LEFT_MOTOR_2 12
@@ -13,27 +14,60 @@
 #define CLIMBING_MOTOR_1 13
 #define CLIMBING_MOTOR_2 14
 
-//motor groups initialized here 
-auto leftMotors = MotorGroup({LEFT_MOTOR_1, LEFT_MOTOR_2}); 
-auto rightMotors = MotorGroup({RIGHT_MOTOR_1, RIGHT_MOTOR_2});
-auto intakeMotor1 = okapi::Motor(INTAKE_MOTOR_1);
-auto intakeMotor2 = okapi::Motor(INTAKE_MOTOR_2);
-auto climbingMotor1 = okapi::Motor(CLIMBING_MOTOR_1);
-auto climbingMotor2= okapi::Motor(CLIMBING_MOTOR_2);
+pros::Motor leftMotor1(LEFT_MOTOR_1, pros::E_MOTOR_GEARSET_06, false);
+pros::Motor leftMotor2(LEFT_MOTOR_2, pros::E_MOTOR_GEARSET_06, false);
+pros::Motor rightMotor1(RIGHT_MOTOR_1, pros::E_MOTOR_GEARSET_06, true);
+pros::Motor rightMotor2(RIGHT_MOTOR_2, pros::E_MOTOR_GEARSET_06, true);
 
+pros::MotorGroup leftMotors({leftMotor1, leftMotor2});
+pros::MotorGroup rightMotors({rightMotor1, rightMotor2});
 
-//Controller, pneumatics
-Controller master;
+pros::Motor intakeMotor1(INTAKE_MOTOR_1);
+pros::Motor intakeMotor2(INTAKE_MOTOR_2);
+pros::Motor climbingMotor1(CLIMBING_MOTOR_1);
+pros::Motor climbingMotor2(CLIMBING_MOTOR_2);
+
+pros::Controller master(pros::E_CONTROLLER_MASTER);
 pros::ADIDigitalOut piston(PNEUMATICS_PORT);
 
 
-//Drive
-auto drive = ChassisControllerBuilder()
-    .withMotors(leftMotors, rightMotors) 
-    .withDimensions(AbstractMotor::gearset::blue, {{4_in, 10_in}, imev5BlueTPR})
-    .withOdometry()
-    .buildOdometry();
+lemlib::Drivetrain drivetrain {
+    &leftMotors,
+    &rightMotors,
+    10.5, 
+    3.25,
+    360, 
+    1 
+};
+lemlib::OdomSensors sensors {
+    nullptr, 
+    nullptr, 
+    nullptr, 
+    nullptr, 
+    nullptr 
+};
 
+lemlib::ControllerSettings controller(
+    10,
+    0,
+    3,
+    3,
+    1,
+    100,
+    3,
+    500,
+    5
+);
+
+lemlib::Chassis chassis(    
+    drivetrain,    
+    controller,    
+    controller,
+    sensors,   
+    nullptr,   
+    nullptr 
+
+);
 
 
 #endif

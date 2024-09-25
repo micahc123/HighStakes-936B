@@ -8,11 +8,11 @@ bool pistonToggle = false, intakeToggle = false, climbingToggle = false;
 
 void pneumatics()
 {
-    bool isPistonButtonPressed = master.getDigital(ControllerDigital::A);
+    bool isPistonButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_A);
     
     if (isPistonButtonPressed) {
         pistonToggle = !pistonToggle;
-        while (master.getDigital(ControllerDigital::A)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_A)) {
             pros::delay(1);
         }
     }
@@ -22,57 +22,49 @@ void pneumatics()
 
 void intake()
 {
-    bool isIntakeButtonPressed = master.getDigital(ControllerDigital::R1);
+    bool isIntakeButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
     
     if (isIntakeButtonPressed) {
         intakeToggle = !intakeToggle;
-        while (master.getDigital(ControllerDigital::R1)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
             pros::delay(1);
         }
     }
     
     if (intakeToggle) {
-        intakeMotor1.moveVoltage(6000);
-        intakeMotor2.moveVoltage(-6000);
+        intakeMotor1.move_voltage(6000);
+        intakeMotor2.move_voltage(-6000);
     } else {
-        intakeMotor1.moveVoltage(0);
-        intakeMotor2.moveVoltage(0);
+        intakeMotor1.move_voltage(0);
+        intakeMotor2.move_voltage(0);
     }
 }
 
 void climbing()
 {
-    bool isClimbingButtonPressed = master.getDigital(ControllerDigital::L1);
+    bool isClimbingButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
     
     if (isClimbingButtonPressed) {
         climbingToggle = !climbingToggle;
-        while (master.getDigital(ControllerDigital::L1)) {
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
             pros::delay(1);
         }
     }
     
     if (climbingToggle) {
-        climbingMotor1.moveVoltage(6000);
-        climbingMotor2.moveVoltage(6000);
+        climbingMotor1.move_voltage(6000);
+        climbingMotor2.move_voltage(6000);
     } else {
-        climbingMotor1.moveVoltage(0);
-        climbingMotor2.moveVoltage(0);
+        climbingMotor1.move_voltage(0);
+        climbingMotor2.move_voltage(0);
     }
 }
 
 void movement(){
-    double left = -master.getAnalog(ControllerAnalog::leftY);
-    double right = master.getAnalog(ControllerAnalog::rightY);
+    double left = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    double right = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    if (left == 0 && right == 0) {
-        leftMotors.setBrakeMode(AbstractMotor::brakeMode::hold);
-        rightMotors.setBrakeMode(AbstractMotor::brakeMode::hold);
-    } else {
-        drive->getModel()->tank(left, right);
-        
-        leftMotors.setBrakeMode(AbstractMotor::brakeMode::coast);
-        rightMotors.setBrakeMode(AbstractMotor::brakeMode::coast);
-    }
+    chassis.tank(left, right, 0.05);
 }
 
 #endif

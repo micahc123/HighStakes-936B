@@ -4,6 +4,48 @@
         "project_name": "HighStakesVex",
         "target": "v5",
         "templates": {
+            "LemLib": {
+                "location": "/Users/micahchen/Library/Application Support/PROS/templates/LemLib@0.5.0",
+                "metadata": {
+                    "origin": "LemLib"
+                },
+                "name": "LemLib",
+                "py/object": "pros.conductor.templates.local_template.LocalTemplate",
+                "supported_kernels": "^3.8.3",
+                "system_files": [
+                    "include/lemlib/logger/stdout.hpp",
+                    "include/fmt/format-inl.h",
+                    "include/lemlib/timer.hpp",
+                    "include/lemlib/logger/infoSink.hpp",
+                    "include/fmt/core.h",
+                    "include/lemlib/chassis/chassis.hpp",
+                    "include/lemlib/util.hpp",
+                    "include/fmt/args.h",
+                    "firmware/LemLib.a",
+                    "include/lemlib/VERSION",
+                    "include/lemlib/api.hpp",
+                    "include/lemlib/logger/baseSink.hpp",
+                    "include/lemlib/LICENSE",
+                    "include/lemlib/chassis/trackingWheel.hpp",
+                    "include/lemlib/logger/logger.hpp",
+                    "include/lemlib/logger/buffer.hpp",
+                    "include/lemlib/logger/message.hpp",
+                    "firmware/asset.mk",
+                    "include/lemlib/driveCurve.hpp",
+                    "static/example.txt",
+                    "include/lemlib/pid.hpp",
+                    "include/lemlib/README.md",
+                    "include/lemlib/pose.hpp",
+                    "include/lemlib/logger/telemetrySink.hpp",
+                    "include/lemlib/chassis/odom.hpp",
+                    "include/lemlib/exitcondition.hpp",
+                    "include/lemlib/asset.hpp",
+                    "include/fmt/format.h"
+                ],
+                "target": "v5",
+                "user_files": [],
+                "version": "0.5.0"
+            },
             "kernel": {
                 "location": "/Users/micahchen/Library/Application Support/PROS/templates/kernel@3.8.3",
                 "metadata": {
