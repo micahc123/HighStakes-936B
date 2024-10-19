@@ -5,7 +5,8 @@
       "includePath": [
         "${workspaceFolder}/**",
         "/Users/micahchen/Documents/GitHub/HighStakes-936B/include",
-        "/Users/micahchen/Desktop/HighStakes-936B/include"
+        "/Users/micahchen/Desktop/HighStakes-936B/include",
+        "/Users/micahchen/Developer/HighStakes-936B/include"
       ],
       "defines": [
         "_DEBUG",
@@ -21,7 +22,7 @@
       ],
       "browse": {
         "path": [
-          "/Users/micahchen/Desktop/HighStakes-936B"
+          "/Users/micahchen/Developer/HighStakes-936B"
         ],
         "limitSymbolsToIncludedHeaders": true,
         "databaseFilename": ""
