@@ -1,8 +1,7 @@
 #include "main.h"
 #include "setup.h"
-#include "functions.h"
 
-bool pistonToggle = false, intakeToggle = false, climbingToggle = false;
+bool pistonToggle = false, intakeToggle = false, climbingToggle = false, rollerToggle = false, wallToggle = false;
 
 
 void disabled() {}
@@ -15,31 +14,52 @@ void opcontrol() {
         movement();
         pneumatics();
         intake();
-        climbing();
+        roller();
+        wall();
         pros::delay(25);
     }
 }
 
+void roller() {
+    bool isRollerButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+    if (isRollerButtonPressed) {
+        rollerToggle = !rollerToggle;
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) {
+            pros::delay(1);
+        }
+    }
+    
+    if (rollerToggle) {
+        rollerMotor.move_voltage(6000);
+    } else {
+        rollerMotor.move_voltage(0);
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+void wall() {
+    bool isWallButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    if (isWallButtonPressed) {
+        wallToggle = !wallToggle;
+        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
+            pros::delay(1);
+        }
+    }
+    
+    if (wallToggle) {
+        wallMotor.move_voltage(6000);
+        
+        pros::c::optical_rgb_s_t rgb = colorSensor.get_rgb();
+        
+        if ((rgb.red > 200 && rgb.green < 100 && rgb.blue < 100) || 
+            (rgb.blue > 200 && rgb.green < 100 && rgb.red < 100)) {
+                intakeMotor.move_voltage(0);
+                intakeToggle = false;
+            
+        }
+    } else {
+        wallMotor.move_voltage(-6000);
+    }
+}
 
 void pneumatics()
 {
@@ -67,33 +87,12 @@ void intake()
     }
     
     if (intakeToggle) {
-        intakeMotor1.move_voltage(6000);
-        intakeMotor2.move_voltage(-6000);
+        intakeMotor.move_voltage(6000);
     } else {
-        intakeMotor1.move_voltage(0);
-        intakeMotor2.move_voltage(0);
+        intakeMotor.move_voltage(0);
     }
 }
 
-void climbing()
-{
-    bool isClimbingButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    
-    if (isClimbingButtonPressed) {
-        climbingToggle = !climbingToggle;
-        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-            pros::delay(1);
-        }
-    }
-    
-    if (climbingToggle) {
-        climbingMotor1.move_voltage(6000);
-        climbingMotor2.move_voltage(6000);
-    } else {
-        climbingMotor1.move_voltage(0);
-        climbingMotor2.move_voltage(0);
-    }
-}
 
 void movement(){
     double leftY = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);

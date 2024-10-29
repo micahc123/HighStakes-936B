@@ -6,28 +6,26 @@
 // Ports
 
 #define PNEUMATICS_PORT 'H'    
-#define LEFT_MOTOR_1 11
-#define LEFT_MOTOR_2 12
-#define RIGHT_MOTOR_1 1
-#define RIGHT_MOTOR_2 2
-#define INTAKE_MOTOR_1 9
-#define INTAKE_MOTOR_2 10
-#define CLIMBING_MOTOR_1 13
-#define CLIMBING_MOTOR_2 14
+#define LEFT_MOTOR_1 1
+#define LEFT_MOTOR_2 2
+#define RIGHT_MOTOR_1 3
+#define RIGHT_MOTOR_2 4
+#define INTAKE_MOTOR 9
+#define ROLLER_MOTOR 15
+#define WALL_MOTOR 10
+
 
 pros::Motor leftFrontMotor(LEFT_MOTOR_1,  pros::E_MOTOR_GEAR_BLUE);
 pros::Motor leftBackMotor(LEFT_MOTOR_2, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor rightFrontMotor(RIGHT_MOTOR_1, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor rightBackMotor(RIGHT_MOTOR_2, pros::E_MOTOR_GEAR_BLUE);
-
-
+pros::Optical colorSensor(1);  
 pros::MotorGroup leftMotors({leftFrontMotor, leftBackMotor});
 pros::MotorGroup rightMotors({rightFrontMotor, rightBackMotor});
 
-pros::Motor intakeMotor1(INTAKE_MOTOR_1);
-pros::Motor intakeMotor2(INTAKE_MOTOR_2);
-pros::Motor climbingMotor1(CLIMBING_MOTOR_1);
-pros::Motor climbingMotor2(CLIMBING_MOTOR_2);
+pros::Motor intakeMotor(INTAKE_MOTOR);
+pros::Motor rollerMotor(ROLLER_MOTOR);
+pros::Motor wallMotor(WALL_MOTOR);
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 pros::ADIDigitalOut piston(PNEUMATICS_PORT);
@@ -66,10 +64,7 @@ lemlib::Chassis chassis(
     drivetrain,    
     controller,    
     controller,
-    sensors,   
-    nullptr,   
-    nullptr 
-
+    sensors
 );
 
 

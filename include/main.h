@@ -68,9 +68,10 @@ void disabled(void);
 void competition_initialize(void);
 void opcontrol(void);
 void pneumatics(void);
-void climbing(void);
 void intake(void);
 void movement(void);
+void roller(void);
+void wall(void);
 
 
 
