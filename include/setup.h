@@ -7,12 +7,12 @@
 
 #define PNEUMATICS_PORT 'H'    
 #define LEFT_MOTOR_1 1
-#define LEFT_MOTOR_2 2
-#define RIGHT_MOTOR_1 3
+#define LEFT_MOTOR_2 3
+#define RIGHT_MOTOR_1 2
 #define RIGHT_MOTOR_2 4
-#define INTAKE_MOTOR 9
-#define ROLLER_MOTOR 15
-#define WALL_MOTOR 10
+#define INTAKE_MOTOR 5
+#define ROLLER_MOTOR 6
+#define WALL_MOTOR 11
 
 
 pros::Motor leftFrontMotor(LEFT_MOTOR_1,  pros::E_MOTOR_GEAR_BLUE);
@@ -48,17 +48,16 @@ lemlib::OdomSensors sensors {
 };
 
 lemlib::ControllerSettings controller(
-    10,   // kP (proportional gain)
+    20,   // kP (proportional gain)
     0,    // kI (integral gain)
-    3,    // kD (derivative gain)
+    10,   // kD (derivative gain)
     3,    // antiWindup
     1,    // smallErrorRange
     100,  // smallErrorTimeout
     3,    // largeErrorRange
     500,  // largeErrorTimeout
-    5     // slew rate
+    10    // slew rate
 );
-
 
 lemlib::Chassis chassis(    
     drivetrain,    

@@ -30,22 +30,17 @@ void roller() {
     }
     
     if (rollerToggle) {
-        rollerMotor.move_voltage(6000);
+        rollerMotor.move_voltage(12000);
     } else {
         rollerMotor.move_voltage(0);
     }
 }
 
 void wall() {
-    bool isWallButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
-    if (isWallButtonPressed) {
-        wallToggle = !wallToggle;
-        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_L1)) {
-            pros::delay(1);
-        }
-    }
+    bool isWallForwardButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L1);
+    bool isWallBackwardButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
     
-    if (wallToggle) {
+    if (isWallForwardButtonPressed) {
         wallMotor.move_voltage(6000);
         
         pros::c::optical_rgb_s_t rgb = colorSensor.get_rgb();
@@ -54,10 +49,11 @@ void wall() {
             (rgb.blue > 200 && rgb.green < 100 && rgb.red < 100)) {
                 intakeMotor.move_voltage(0);
                 intakeToggle = false;
-            
         }
-    } else {
+    } else if (isWallBackwardButtonPressed) {
         wallMotor.move_voltage(-6000);
+    } else {
+        wallMotor.move_voltage(0);
     }
 }
 
@@ -74,29 +70,23 @@ void pneumatics()
     
     piston.set_value(pistonToggle ? 1 : 0);
 }
-
 void intake()
 {
-    bool isIntakeButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    bool isIntakeForwardButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_R1);
+    bool isIntakeBackwardButtonPressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
     
-    if (isIntakeButtonPressed) {
-        intakeToggle = !intakeToggle;
-        while (master.get_digital(pros::E_CONTROLLER_DIGITAL_R1)) {
-            pros::delay(1);
-        }
-    }
-    
-    if (intakeToggle) {
-        intakeMotor.move_voltage(6000);
+    if (isIntakeForwardButtonPressed) {
+        intakeMotor.move_voltage(12000);
+    } else if (isIntakeBackwardButtonPressed) {
+        intakeMotor.move_voltage(-12000);
     } else {
         intakeMotor.move_voltage(0);
     }
 }
 
-
 void movement(){
-    double leftY = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    double rightY = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    double leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    double rightY = -master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    chassis.tank(leftY, rightY);
+    chassis.tank(2.0 * -leftY, 2.0 * -rightY);
 }
