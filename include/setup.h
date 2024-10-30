@@ -36,7 +36,7 @@ lemlib::Drivetrain drivetrain {
     &rightMotors,
     10.5, //track width
     lemlib::Omniwheel::NEW_4, //wheel
-    600, //rpm
+    450, //rpm
     2 //drift
 };
 lemlib::OdomSensors sensors {

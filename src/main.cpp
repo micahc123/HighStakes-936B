@@ -16,7 +16,7 @@ void opcontrol() {
         intake();
         roller();
         wall();
-        pros::delay(25);
+        pros::delay(10);
     }
 }
 
@@ -90,3 +90,4 @@ void movement(){
 
     chassis.tank(2.0 * -leftY, 2.0 * -rightY);
 }
+ 
