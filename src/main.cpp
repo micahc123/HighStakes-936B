@@ -85,9 +85,9 @@ void intake()
 }
 
 void movement(){
-    double leftY = master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    double rightY = -master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    double leftY = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+    double rightY = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
 
-    chassis.tank(2.0 * -leftY, 2.0 * -rightY);
+    chassis.tank(2.0 * leftY, 2.0 * rightY);
 }
  
