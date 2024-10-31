@@ -85,9 +85,35 @@ void intake()
 }
 
 void movement(){
-    double leftY = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    double rightY = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+    static bool dashActive = false;
+    static unsigned long dashStartTime = 0;
+    static unsigned long lastDashTime = 0;
+    const unsigned long dashDuration = 1000;
+    const unsigned long dashCooldown = 3000; 
 
-    chassis.tank(2.0 * leftY, 2.0 * rightY);
+    unsigned long currentTime = pros::millis();
+
+    bool isL2Pressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_L2);
+    bool isR2Pressed = master.get_digital(pros::E_CONTROLLER_DIGITAL_R2);
+
+    if(isL2Pressed && isR2Pressed && !dashActive && (currentTime - lastDashTime >= dashCooldown)){
+        dashActive = true;
+        dashStartTime = currentTime;
+        lastDashTime = currentTime;
+    }
+
+    if(dashActive){
+        //dash
+        chassis.tank(12000, 12000);
+        if(currentTime - dashStartTime >= dashDuration){
+            dashActive = false;
+        }
+    }
+    else{
+        //driver control
+        double leftY = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+        double rightY = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+
+        chassis.tank(2.0 * leftY, 2.0 * rightY);
+    }
 }
- 
