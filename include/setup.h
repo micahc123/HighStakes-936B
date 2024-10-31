@@ -50,15 +50,15 @@ lemlib::OdomSensors sensors {
 };
 
 lemlib::ControllerSettings controller(
-    20,   // kP (proportional gain)
-    0,    // kI (integral gain)
-    10,   // kD (derivative gain)
+    30,   // kP - Increase for more aggressive response
+    0,    // kI - Keep at 0
+    20,   // kD - Increase for better stability at high speeds
     3,    // antiWindup
     1,    // smallErrorRange
     100,  // smallErrorTimeout
     3,    // largeErrorRange
     500,  // largeErrorTimeout
-    10    // slew rate
+    20    // slew rate - Increase for faster acceleration
 );
 
 lemlib::Chassis chassis(    
