@@ -5,14 +5,14 @@
 #include "robot/intake.h"
 #include "robot/roller.h"
 #include "robot/wall.h"
-#include "globals.h" // Include the globals header
-
-// Remove the following line from main.cpp
-// bool pistonToggle = false, intakeToggle = false, climbingToggle = false, rollerToggle = false, wallToggle = false;
+#include "globals.h" 
 
 void disabled() {}
 
-void competition_initialize() {}
+void initialize() {
+    chassis.calibrate();
+    chassis.setPose(0, 0, 0);
+}
 
 void opcontrol() {
     while (true) {
