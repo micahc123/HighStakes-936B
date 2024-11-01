@@ -73,8 +73,6 @@ void movement(void);
 void roller(void);
 void wall(void);
 
-
-
 #ifdef __cplusplus
 }
 #endif

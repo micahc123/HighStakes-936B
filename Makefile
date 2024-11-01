@@ -32,14 +32,38 @@ VERSION:=1.0.0
 # this line excludes opcontrol.c and similar files
 EXCLUDE_SRC_FROM_LIB+=$(foreach file, $(SRCDIR)/main,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
 
-# files that get distributed to every user (beyond your source archive) - add
-# whatever files you want here. This line is configured to add all header files
-# that are in the the include directory get exported
-TEMPLATE_FILES=$(INCDIR)/**/*.h $(INCDIR)/**/*.hpp
+# Add subsystem source files
+SUBSYSTEMS_SRC:= \
+    $(SRCDIR)/subsystems/drivetrain.cpp \
+    $(SRCDIR)/subsystems/wall.cpp \
+    $(SRCDIR)/subsystems/roller.cpp \
+    $(SRCDIR)/subsystems/intake.cpp \
+    $(SRCDIR)/subsystems/pneumatics.cpp
 
-.DEFAULT_GOAL=quick
+# Include all source files except those excluded
+SRCS:= $(wildcard $(SRCDIR)/*.[cC][pP][pP]) $(SUBSYSTEMS_SRC)
 
-################################################################################
-################################################################################
-########## Nothing below this line should be edited by typical users ###########
--include ./common.mk
+# Object files
+OBJS:= $(patsubst $(SRCDIR)/%.cpp, $(BINDIR)/%.o, $(SRCS))
+
+# Compiler and linker settings
+CXX = arm-none-eabi-g++
+CXXFLAGS += -std=gnu++20 -O2 $(WARNFLAGS) $(EXTRA_CXXFLAGS)
+LDFLAGS += -T $(FWDIR)/v5.ld -Wl,--gc-sections
+
+# Default target
+all: $(BINDIR)/monolith.bin
+
+# Compilation rule
+$(BINDIR)/%.o: $(SRCDIR)/%.cpp
+	@mkdir -p $(BINDIR)
+	$(CXX) $(CXXFLAGS) -I$(INCDIR) -c $< -o $@
+
+# Linking rule
+$(BINDIR)/monolith.bin: $(OBJS)
+	$(CXX) $(OBJS) $(LDFLAGS) -o $@
+
+clean:
+	rm -rf $(BINDIR)/*.o $(BINDIR)/monolith.bin
+
+.PHONY: all clean
