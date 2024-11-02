@@ -40,6 +40,11 @@
  * You should add more #includes here
  */
 #include "okapi/api.hpp"
+#include "robot/movement.h"
+#include "robot/pneumatics.h"
+#include "robot/roller.h"
+#include "robot/intake.h"
+#include "robot/wall.h"
 //#include "pros/api_legacy.h"
 
 /**
@@ -67,11 +72,7 @@ void initialize(void);
 void disabled(void);
 void competition_initialize(void);
 void opcontrol(void);
-void pneumatics(void);
-void intake(void);
-void movement(void);
-void roller(void);
-void wall(void);
+
 
 #ifdef __cplusplus
 }

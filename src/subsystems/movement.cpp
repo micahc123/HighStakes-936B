@@ -1,10 +1,15 @@
 #include "robot/movement.h"
-#include "setup.h"
+#include "globals.h"
+#include "pros/motors.hpp"
+#include "pros/misc.hpp"
 
-void movement() {
-    // Driver control
-    double leftY = -master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
-    double rightY = master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y);
+namespace subsystems {
 
-    chassis.tank(leftY, rightY);
+Movement::Movement(lemlib::Chassis* chassis)
+    : chassis(chassis) {}
+
+void Movement::tank_drive(double leftY, double rightY) {
+    chassis->tank(leftY, rightY);
 }
+
+} // namespace subsystems

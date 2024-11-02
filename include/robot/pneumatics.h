@@ -1,19 +1,23 @@
 #ifndef PNEUMATICS_H
 #define PNEUMATICS_H
 
-/**
- * @brief Toggles the piston state based on controller input.
- */
-void pneumatics();
+#include "pros/adi.hpp"
 
-/**
- * @brief Clamps the stake by activating the piston.
- */
-void clampStake();
+namespace subsystems {
 
-/**
- * @brief Declamps the stake by deactivating the piston.
- */
-void declampStake();
+class Pneumatics {
+public:
+    Pneumatics(char port);
+    void toggle();
+    void clamp_stake();
+    void declamp_stake();
+    bool get_state() const;
+
+private:
+    pros::ADIDigitalOut piston;
+    bool piston_toggle;
+};
+
+} // namespace subsystems
 
 #endif // PNEUMATICS_H

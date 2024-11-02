@@ -1,7 +1,11 @@
 #ifndef AUTON_H
 #define AUTON_H
 
-#include "main.h"
+#include "api.h"
+#include "pros/rtos.hpp"
+#include "lemlib/api.hpp"
+#include "robot/pneumatics.h"
+#include "robot/intake.h"
 
 /**
  * @brief Enumeration of available autonomous routines.

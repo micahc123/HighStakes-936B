@@ -1,8 +1,22 @@
-#ifndef DRIVETRAIN_H
-#define DRIVETRAIN_H
+#ifndef MOVEMENT_H
+#define MOVEMENT_H
 
-#include "main.h"
+#include "pros/motors.hpp"
+#include "lemlib/api.hpp"
+#include "pros/misc.hpp"
+#include "pros/rtos.hpp"
 
-void movement();
+namespace subsystems {
 
-#endif // DRIVETRAIN_H
+class Movement {
+public:
+    Movement(lemlib::Chassis* chassis);
+    void tank_drive(double leftY, double rightY);
+
+private:
+    lemlib::Chassis* chassis;
+};
+
+} // namespace subsystems
+
+#endif // MOVEMENT_H

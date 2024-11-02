@@ -1,26 +1,25 @@
 #include "main.h"
-#include "setup.h"
-#include "robot/movement.h"
-#include "robot/pneumatics.h"
-#include "robot/intake.h"
-#include "robot/roller.h"
-#include "robot/wall.h"
-#include "globals.h" 
+#include "globals.h"
+
+using namespace subsystems;
+
+void initialize() {
+}
 
 void disabled() {}
 
-void initialize() {
-    chassis.calibrate();
-    chassis.setPose(0, 0, 0);
-}
+void competition_initialize() {}
+
+void autonomous() {}
 
 void opcontrol() {
     while (true) {
-        movement();
-        pneumatics();
-        intake();
-        roller();
-        wall();
-        pros::delay(10);
+        movement.tank_drive(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y));
+        pneumatics.run();
+        intake.run();
+        roller.run();
+        wall.run();
+
+        pros::delay(20);
     }
 }

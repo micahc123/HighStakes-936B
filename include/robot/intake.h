@@ -1,26 +1,23 @@
 #ifndef INTAKE_H
 #define INTAKE_H
 
-/**
- * @brief Controls the intake based on controller input.
- */
-void intake();
+#include "pros/motors.hpp"  // Added include for pros::Motor
 
-/**
- * @brief Activates the intake motor to collect game elements.
- */
-void activateIntake();
+namespace subsystems {
 
-/**
- * @brief Deactivates the intake motor.
- */
-void deactivateIntake();
+class Intake {
+public:
+    Intake(int port);
+    void activate();
+    void deactivate();
+    void set_voltage(int voltage);
+    bool is_active() const;
 
-/**
- * @brief Sets the intake motor speed.
- * 
- * @param voltage The voltage to set for the intake motor.
- */
-void setIntakeVoltage(int voltage);
+private:
+    pros::Motor intake_motor;
+    bool active;
+};
+
+} // namespace subsystems
 
 #endif // INTAKE_H

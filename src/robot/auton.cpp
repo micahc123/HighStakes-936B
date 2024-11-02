@@ -1,9 +1,5 @@
 #include "robot/auton.h"
-#include "setup.h"
 #include "globals.h"
-#include "robot/pneumatics.h"
-#include "robot/intake.h"
-#include "lemlib/api.hpp"
 
 // Define assets for autonomous paths
 ASSET(red_left_part1_txt);
@@ -19,44 +15,30 @@ ASSET(blue_right_txt);
  */
 static AUTON_ROUTINE selectedAuton = AUTON_ROUTINE::RED_LEFT;
 
-/**
- * @brief Sets the selected autonomous routine.
- * 
- * @param routine The autonomous routine to set.
- */
 void setAutonRoutine(AUTON_ROUTINE routine) {
     selectedAuton = routine;
 }
 
-/**
- * @brief Gets the currently selected autonomous routine.
- * 
- * @return The selected autonomous routine.
- */
 AUTON_ROUTINE getAutonRoutine() {
     return selectedAuton;
 }
 
-/**
- * @brief Executes the selected autonomous routine.
- */
 void auton() {
     switch (selectedAuton) {
         case AUTON_ROUTINE::RED_LEFT:
             {
-                
                 // Step 3: Keep Intake Active While Following Path
                 chassis.follow(red_left_part1_txt, 2.0, 10000, true, false);
-                clampStake();
+                pneumatics.clamp_stake();
                 pros::delay(1000);
                 chassis.follow(red_left_part2_txt, 2.0, 10000, true, false);
-                activateIntake();
+                intake.activate();
                 pros::delay(1000);
                 chassis.follow(red_left_part3_txt, 2.0, 10000, true, false);
                 pros::delay(1000);
                 chassis.follow(red_left_part4_txt, 2.0, 10000, true, false);
-                deactivateIntake();
-                declampStake();
+                intake.deactivate();
+                pneumatics.declamp_stake();
                 break;
             }
         case AUTON_ROUTINE::RED_RIGHT:
@@ -75,9 +57,6 @@ void auton() {
                 break;
             }
         default:
-            // Default autonomous routine or do nothing
             break;
     }
-
-    // Additional autonomous actions can be added here if needed
 }
