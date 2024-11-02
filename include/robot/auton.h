@@ -2,33 +2,25 @@
 #define AUTON_H
 
 #include "api.h"
-#include "pros/rtos.hpp"
 #include "lemlib/api.hpp"
-#include "robot/pneumatics.h"
-#include "robot/intake.h"
+#include "robot/auton_selector.h"
 
-/**
- * @brief Enumeration of available autonomous routines.
- */
-enum class AUTON_ROUTINE { RED_LEFT, RED_RIGHT, BLUE_LEFT, BLUE_RIGHT };
+namespace subsystems {
 
-/**
- * @brief Initializes and runs the autonomous routine.
- */
-void auton();
+class Auton {
+public:
+    Auton(lemlib::Chassis* chassis);
+    void run_auton(AUTON_ROUTINE routine);
 
-/**
- * @brief Sets the selected autonomous routine.
- * 
- * @param routine The autonomous routine to set.
- */
-void setAutonRoutine(AUTON_ROUTINE routine);
+private:
+    void run_red_left();
+    void run_red_right();
+    void run_blue_left();
+    void run_blue_right();
 
-/**
- * @brief Gets the currently selected autonomous routine.
- * 
- * @return The selected autonomous routine.
- */
-AUTON_ROUTINE getAutonRoutine();
+    lemlib::Chassis* chassis;
+};
+
+} // namespace subsystems
 
 #endif // AUTON_H

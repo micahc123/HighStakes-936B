@@ -1,34 +1,35 @@
-#include "robot/pneumatics.h"
+#include "robot/clamp.h"
 #include "globals.h"
+
 namespace subsystems {
 
-Pneumatics::Pneumatics(char port)
+Clamp::Clamp(char port)
     : piston(port), piston_toggle(false) {}
 
-void Pneumatics::toggle() {
+void Clamp::toggle() {
     piston_toggle = !piston_toggle;
     piston.set_value(piston_toggle ? 1 : 0);
 }
 
-void Pneumatics::clamp_stake() {
+void Clamp::clamp_stake() {
     piston_toggle = true;
     piston.set_value(1);
-    pros::delay(500); // Adjust delay as needed for piston activation
+    pros::delay(500);
 }
 
-void Pneumatics::declamp_stake() {
+void Clamp::declamp_stake() {
     piston_toggle = false;
     piston.set_value(0);
-    pros::delay(500); // Adjust delay as needed for piston deactivation
+    pros::delay(500); 
 }
 
-bool Pneumatics::get_state() const {
+bool Clamp::get_state() const {
     return piston_toggle;
 }
-void Pneumatics::run() {
+void Clamp::run() {
     if (master.get_digital_new_press(DIGITAL_L1)) {
         toggle();
     }
 }
 
-} // namespace subsystems
+} 

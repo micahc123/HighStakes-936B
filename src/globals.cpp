@@ -16,7 +16,7 @@ pros::MotorGroup leftMotors({leftFrontMotor, leftBackMotor});
 pros::MotorGroup rightMotors({rightFrontMotor, rightBackMotor});
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
-pros::ADIDigitalOut piston(PNEUMATICS_PORT);
+pros::ADIDigitalOut piston(CLAMP_PORT);
 
 lemlib::Drivetrain drivetrain {
     &leftMotors,
@@ -54,9 +54,9 @@ lemlib::Chassis chassis(
     sensors
 );
 
-// Initialize subsystem instances
 subsystems::Movement movement(&chassis);
-subsystems::Pneumatics pneumatics(PNEUMATICS_PORT);
+subsystems::Clamp clamp(CLAMP_PORT);
 subsystems::Roller roller(ROLLER_MOTOR);
 subsystems::Intake intake(INTAKE_MOTOR);
 subsystems::Wall wall(WALL_MOTOR);
+subsystems::Auton auton(&chassis);

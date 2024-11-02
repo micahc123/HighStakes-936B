@@ -1,16 +1,17 @@
-#ifndef PNEUMATICS_H
-#define PNEUMATICS_H
+#ifndef CLAMP_H
+#define CLAMP_H
 
-#include "pros/adi.hpp"
 
 namespace subsystems {
 
-class Pneumatics {
+class Clamp {
 public:
-    Pneumatics(char port);
+    Clamp(char port);
     void toggle();
     void clamp_stake();
     void declamp_stake();
+    void run();
+
     bool get_state() const;
 
 private:
@@ -20,4 +21,4 @@ private:
 
 } // namespace subsystems
 
-#endif // PNEUMATICS_H
+#endif // CLAMP_H

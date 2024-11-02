@@ -41,7 +41,7 @@
  */
 #include "okapi/api.hpp"
 #include "robot/movement.h"
-#include "robot/pneumatics.h"
+#include "robot/clamp.h"
 #include "robot/roller.h"
 #include "robot/intake.h"
 #include "robot/wall.h"
