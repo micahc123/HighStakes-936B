@@ -27,11 +27,11 @@ bool Intake::is_active() const {
 
 void Intake::run() {
     if (master.get_digital(DIGITAL_L2)) {
-        set_voltage(12000);  // Forward while holding L2
+        set_voltage(12000);  
     } else if (master.get_digital(DIGITAL_L1)) {
-        set_voltage(-12000); // Backward while holding L1
+        set_voltage(-12000); 
     } else {
-        deactivate();       // Stop when no buttons pressed
+        deactivate();       
     }
 }
 
