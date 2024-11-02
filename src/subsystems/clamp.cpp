@@ -27,7 +27,7 @@ bool Clamp::get_state() const {
     return piston_toggle;
 }
 void Clamp::run() {
-    if (master.get_digital_new_press(DIGITAL_L1)) {
+    if (master.get_digital_new_press(DIGITAL_A)) {
         toggle();
     }
 }

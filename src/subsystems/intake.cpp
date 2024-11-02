@@ -1,4 +1,5 @@
 #include "robot/intake.h"
+#include "globals.h"
 
 namespace subsystems {
 
@@ -24,4 +25,14 @@ bool Intake::is_active() const {
     return active;
 }
 
-} // namespace subsystems
+void Intake::run() {
+    if (master.get_digital(DIGITAL_L2)) {
+        set_voltage(12000);  // Forward while holding L2
+    } else if (master.get_digital(DIGITAL_L1)) {
+        set_voltage(-12000); // Backward while holding L1
+    } else {
+        deactivate();       // Stop when no buttons pressed
+    }
+}
+
+} 

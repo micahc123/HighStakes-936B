@@ -1,5 +1,5 @@
 #include "robot/roller.h"
-
+#include "globals.h"
 namespace subsystems {
 
 Roller::Roller(int port)
@@ -23,5 +23,13 @@ void Roller::set_voltage(int voltage) {
 bool Roller::is_active() const {
     return active;
 }
-
-} // namespace subsystems
+void Roller::run() {
+    if (master.get_digital_new_press(DIGITAL_R1)) {
+        if (!is_active()) {
+            set_voltage(12000);  
+        } else {
+            deactivate();       
+        }
+    }
+}
+} 

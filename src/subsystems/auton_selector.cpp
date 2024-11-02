@@ -17,17 +17,15 @@ lv_obj_t* AutonSelector::btn_right = nullptr;
 lv_obj_t* AutonSelector::btn_confirm = nullptr;
 
 void AutonSelector::init() {
-    // Create title
+
     title_label = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text(title_label, "Autonomous Selection");
+    lv_label_set_text(title_label, "au Selection");
     lv_obj_align(title_label, NULL, LV_ALIGN_IN_TOP_MID, 0, 20);
 
-    // Create selection display
     selection_label = lv_label_create(lv_scr_act(), NULL);
     update_display();
     lv_obj_align(selection_label, NULL, LV_ALIGN_CENTER, 0, 0);
 
-    // Create left button
     btn_left = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_size(btn_left, 70, 50);
     lv_obj_align(btn_left, NULL, LV_ALIGN_IN_LEFT_MID, 10, 0);
@@ -35,7 +33,6 @@ void AutonSelector::init() {
     lv_obj_t* label_left = lv_label_create(btn_left, NULL);
     lv_label_set_text(label_left, "←");
 
-    // Create right button
     btn_right = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_size(btn_right, 70, 50);
     lv_obj_align(btn_right, NULL, LV_ALIGN_IN_RIGHT_MID, -10, 0);
@@ -43,7 +40,6 @@ void AutonSelector::init() {
     lv_obj_t* label_right = lv_label_create(btn_right, NULL);
     lv_label_set_text(label_right, "→");
 
-    // Create confirm button
     btn_confirm = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_size(btn_confirm, 100, 50);
     lv_obj_align(btn_confirm, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, -10);

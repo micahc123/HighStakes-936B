@@ -32,6 +32,10 @@
 #define DIGITAL_L2 pros::E_CONTROLLER_DIGITAL_L2
 #define DIGITAL_R1 pros::E_CONTROLLER_DIGITAL_R1
 #define DIGITAL_R2 pros::E_CONTROLLER_DIGITAL_R2
+#define DIGITAL_A pros::E_CONTROLLER_DIGITAL_A
+#define DIGITAL_B pros::E_CONTROLLER_DIGITAL_B
+
+
 #define ANALOG_LEFT_Y pros::E_CONTROLLER_ANALOG_LEFT_Y
 #define ANALOG_RIGHT_Y pros::E_CONTROLLER_ANALOG_RIGHT_Y
 
@@ -41,6 +45,16 @@ extern bool intakeToggle;
 extern bool climbingToggle;
 extern bool rollerToggle;
 extern bool wallToggle;
+
+namespace subsystems {
+    class Movement;
+    class Clamp;
+    class Roller;
+    class Intake;
+    class Wall;
+    class Auton;
+}
+
 
 // motors
 extern pros::Motor leftFrontMotor;

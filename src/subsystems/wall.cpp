@@ -31,5 +31,16 @@ void Wall::deactivate() {
     active = false;
     stop();
 }
+void Wall::run() {
+    if (master.get_digital(DIGITAL_R2)) {
+        move_forward();     
+        active = true;
+    } else if (master.get_digital(DIGITAL_R1)) {
+        move_backward();    
+        active = true;
+    } else {
+        deactivate();      
+    }
+}
 
-} // namespace subsystems
+} 
