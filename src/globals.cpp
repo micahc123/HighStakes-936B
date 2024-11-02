@@ -1,13 +1,11 @@
 #include "globals.h"
 
-// Toggle variables
 bool pistonToggle = false;
 bool intakeToggle = false;
 bool climbingToggle = false;
 bool rollerToggle = false;
 bool wallToggle = false;
 
-// Initialize motors
 pros::Motor leftFrontMotor(LEFT_MOTOR_1, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor leftBackMotor(LEFT_MOTOR_2, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor leftTopMotor(LEFT_MOTOR_3, pros::E_MOTOR_GEAR_BLUE);
@@ -17,11 +15,9 @@ pros::Motor rightTopMotor(RIGHT_MOTOR_3, pros::E_MOTOR_GEAR_BLUE);
 pros::MotorGroup leftMotors({leftFrontMotor, leftBackMotor});
 pros::MotorGroup rightMotors({rightFrontMotor, rightBackMotor});
 
-// Initialize controller and peripherals
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 pros::ADIDigitalOut piston(PNEUMATICS_PORT);
 
-// Initialize chassis components
 lemlib::Drivetrain drivetrain {
     &leftMotors,
     &rightMotors,
