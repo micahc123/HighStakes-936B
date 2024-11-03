@@ -26,6 +26,9 @@
 #define INTAKE_MOTOR 7
 #define ROLLER_MOTOR 8
 #define WALL_MOTOR 11
+#define INTAKE_COLOR_SENSOR_PORT 1
+#define INTAKE_DISTANCE_SENSOR_PORT 2
+
 
 //controller
 #define DIGITAL_L1 pros::E_CONTROLLER_DIGITAL_L1
@@ -53,6 +56,7 @@ namespace subsystems {
     class Intake;
     class Wall;
     class Auton;
+    class DonutSelector;
 }
 
 
@@ -77,6 +81,8 @@ extern subsystems::Clamp clamp;
 extern subsystems::Roller roller;
 extern subsystems::Intake intake;
 extern subsystems::Wall wall;
+extern subsystems::Intake intake;
+extern subsystems::DonutSelector donut_selector;
 
 // chassis
 extern lemlib::Drivetrain drivetrain;

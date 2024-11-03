@@ -7,6 +7,7 @@ void initialize() {
     chassis.calibrate();
     chassis.setPose(0, 0, 0);
     AutonSelector::init();
+    DonutSelector::init();
 }
 
 void disabled() {}
@@ -25,6 +26,10 @@ void opcontrol() {
         intake.run();
         roller.run();
         wall.run();
+
+        if (master.get_digital_new_press(DIGITAL_DOWN)) {
+            DonutSelector::show();
+        }
 
         pros::delay(20);
     }

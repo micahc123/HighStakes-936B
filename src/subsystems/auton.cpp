@@ -16,7 +16,7 @@ Auton::Auton(lemlib::Chassis* chassis) : chassis(chassis) {}
 
 void Auton::run_red_left() {
     chassis->follow(red_left_part1_txt, 2.0, 10000, true, false);
-    pneumatics.clamp_stake();
+    clamp.clamp_stake();
     pros::delay(1000);
     chassis->follow(red_left_part2_txt, 2.0, 10000, true, false);
     intake.activate();
@@ -25,7 +25,7 @@ void Auton::run_red_left() {
     pros::delay(1000);
     chassis->follow(red_left_part4_txt, 2.0, 10000, true, false);
     intake.deactivate();
-    pneumatics.declamp_stake();
+    clamp.declamp_stake();
 }
 
 void Auton::run_red_right() {

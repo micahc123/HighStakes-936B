@@ -1,23 +1,33 @@
 #ifndef INTAKE_H
 #define INTAKE_H
 
-#include "pros/motors.hpp"  // Added include for pros::Motor
+#include "pros/adi.hpp"
+#include "pros/optical.hpp"
 
 namespace subsystems {
 
+enum class DONUT_COLOR { NONE, RED, BLUE };
+
 class Intake {
 public:
-    Intake(int port);
+    Intake(int port, int color_sensor_port, int distance_sensor_port);
+    void move_forward();
+    void move_backward();
+    void run();
+    void stop();
+    bool is_active() const;
     void activate();
     void deactivate();
-    void set_voltage(int voltage);
-    bool is_active() const;
+    void set_target_color(DONUT_COLOR color);
 
 private:
     pros::Motor intake_motor;
+    pros::Optical color_sensor;
+    pros::Distance distance_sensor;
     bool active;
+    DONUT_COLOR target_color;
 };
 
-} // namespace subsystems
+}
 
 #endif // INTAKE_H
