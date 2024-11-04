@@ -26,10 +26,11 @@ void Clamp::declamp_stake() {
 bool Clamp::get_state() const {
     return piston_toggle;
 }
+
 void Clamp::run() {
     if (master.get_digital_new_press(DIGITAL_A)) {
         toggle();
     }
 }
 
-} 
+}

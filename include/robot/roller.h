@@ -1,6 +1,7 @@
 #ifndef ROLLER_H
 #define ROLLER_H
 
+#include "pros/motors.hpp"
 
 namespace subsystems {
 

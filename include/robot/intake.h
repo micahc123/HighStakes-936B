@@ -1,8 +1,9 @@
 #ifndef INTAKE_H
 #define INTAKE_H
 
-#include "pros/adi.hpp"
 #include "pros/optical.hpp"
+#include "pros/distance.hpp"
+#include "pros/motors.hpp"  // Add this include for pros::Motor
 
 namespace subsystems {
 

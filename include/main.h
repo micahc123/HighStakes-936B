@@ -39,13 +39,11 @@
 /**
  * You should add more #includes here
  */
-#include "okapi/api.hpp"
 #include "robot/movement.h"
 #include "robot/clamp.h"
 #include "robot/roller.h"
 #include "robot/intake.h"
 #include "robot/wall.h"
-#include "robot/donut_selector.h"
 //#include "pros/api_legacy.h"
 
 /**
@@ -58,7 +56,6 @@
  */
 // using namespace pros;
 // using namespace pros::literals;
-using namespace okapi;
 
 /**
  * Prototypes for the competition control tasks are redefined here to ensure

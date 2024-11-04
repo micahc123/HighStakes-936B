@@ -6,8 +6,6 @@ using namespace subsystems;
 void initialize() {
     chassis.calibrate();
     chassis.setPose(0, 0, 0);
-    AutonSelector::init();
-    DonutSelector::init();
 }
 
 void disabled() {}
@@ -15,8 +13,7 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-    AUTON_ROUTINE selected = AutonSelector::get_selected_auton();
-    auton.run_auton(selected);
+    // Autonomous code has been removed.
 }
 
 void opcontrol() {
@@ -28,7 +25,7 @@ void opcontrol() {
         wall.run();
 
         if (master.get_digital_new_press(DIGITAL_DOWN)) {
-            DonutSelector::show();
+            // DonutSelector::show(); // Removed
         }
 
         pros::delay(20);

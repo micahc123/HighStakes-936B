@@ -11,8 +11,6 @@
 #include "robot/intake.h"
 #include "robot/wall.h"
 #include "lemlib/api.hpp"
-#include "robot/auton_selector.h"
-#include "robot/auton.h"
 
 
 //ports
@@ -55,8 +53,6 @@ namespace subsystems {
     class Roller;
     class Intake;
     class Wall;
-    class Auton;
-    class DonutSelector;
 }
 
 
@@ -79,18 +75,13 @@ extern pros::ADIDigitalOut piston;
 extern subsystems::Movement movement;
 extern subsystems::Clamp clamp;
 extern subsystems::Roller roller;
-extern subsystems::Intake intake;
 extern subsystems::Wall wall;
 extern subsystems::Intake intake;
-extern subsystems::DonutSelector donut_selector;
 
 // chassis
 extern lemlib::Drivetrain drivetrain;
 extern lemlib::OdomSensors sensors;
 extern lemlib::ControllerSettings controller;
 extern lemlib::Chassis chassis;
-
-//auton
-extern subsystems::Auton auton;
 
 #endif // GLOBALS_H

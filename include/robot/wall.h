@@ -1,6 +1,6 @@
 #ifndef WALL_H
 #define WALL_H
-
+#include "pros/motors.hpp"
 
 namespace subsystems {
 

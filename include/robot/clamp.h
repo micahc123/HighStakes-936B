@@ -1,6 +1,8 @@
 #ifndef CLAMP_H
 #define CLAMP_H
 
+#include "pros/adi.hpp"
+#include "pros/rtos.hpp"
 
 namespace subsystems {
 
@@ -8,10 +10,9 @@ class Clamp {
 public:
     Clamp(char port);
     void toggle();
+    void run();
     void clamp_stake();
     void declamp_stake();
-    void run();
-
     bool get_state() const;
 
 private:
@@ -19,6 +20,6 @@ private:
     bool piston_toggle;
 };
 
-} // namespace subsystems
+}
 
 #endif // CLAMP_H
