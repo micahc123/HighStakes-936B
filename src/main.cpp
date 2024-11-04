@@ -4,8 +4,10 @@
 using namespace subsystems;
 
 void initialize() {
+    selector.init();
     chassis.calibrate();
     chassis.setPose(0, 0, 0);
+
 }
 
 void disabled() {}
@@ -23,11 +25,7 @@ void opcontrol() {
         intake.run();
         roller.run();
         wall.run();
-
-        if (master.get_digital_new_press(DIGITAL_DOWN)) {
-            // DonutSelector::show(); // Removed
-        }
-
+        doinker.run();
         pros::delay(20);
     }
 }

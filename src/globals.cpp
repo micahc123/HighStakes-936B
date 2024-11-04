@@ -16,7 +16,6 @@ pros::MotorGroup leftMotors({leftFrontMotor, leftBackMotor});
 pros::MotorGroup rightMotors({rightFrontMotor, rightBackMotor});
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
-pros::ADIDigitalOut piston(CLAMP_PORT);
 
 lemlib::Drivetrain drivetrain {
     &leftMotors,
@@ -55,7 +54,9 @@ lemlib::Chassis chassis(
 );
 
 subsystems::Movement movement(&chassis);
-subsystems::Clamp clamp(CLAMP_PORT);
+subsystems::Clamp clamp(CLAMP_PORT_LEFT, CLAMP_PORT_RIGHT);
 subsystems::Roller roller(ROLLER_MOTOR);
 subsystems::Intake intake(INTAKE_MOTOR, INTAKE_COLOR_SENSOR_PORT, INTAKE_DISTANCE_SENSOR_PORT);
 subsystems::Wall wall(WALL_MOTOR);
+subsystems::Selector selector(&intake);
+subsystems::Doinker doinker(DOINKER_PORT);

@@ -44,6 +44,9 @@
 #include "robot/roller.h"
 #include "robot/intake.h"
 #include "robot/wall.h"
+#include "robot/selector.h"
+#include "robot/doinker.h"
+
 //#include "pros/api_legacy.h"
 
 /**

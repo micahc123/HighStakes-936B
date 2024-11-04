@@ -8,13 +8,18 @@
 #include "robot/movement.h"
 #include "robot/clamp.h"
 #include "robot/roller.h"
+#include "robot/selector.h"
 #include "robot/intake.h"
 #include "robot/wall.h"
+#include "robot/doinker.h"
 #include "lemlib/api.hpp"
 
 
+
 //ports
-#define CLAMP_PORT 'H'    
+#define CLAMP_PORT_LEFT 'H'
+#define CLAMP_PORT_RIGHT 'G'
+#define DOINKER_PORT 'G'    
 #define LEFT_MOTOR_1 2
 #define LEFT_MOTOR_2 15
 #define LEFT_MOTOR_3 20
@@ -53,6 +58,8 @@ namespace subsystems {
     class Roller;
     class Intake;
     class Wall;
+    class Doinker;
+    class Selector;
 }
 
 
@@ -77,9 +84,11 @@ extern subsystems::Clamp clamp;
 extern subsystems::Roller roller;
 extern subsystems::Wall wall;
 extern subsystems::Intake intake;
-
+extern subsystems::Selector selector;
+extern subsystems::Doinker doinker;
 // chassis
 extern lemlib::Drivetrain drivetrain;
+
 extern lemlib::OdomSensors sensors;
 extern lemlib::ControllerSettings controller;
 extern lemlib::Chassis chassis;
