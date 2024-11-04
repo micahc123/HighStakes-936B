@@ -89,7 +89,8 @@ bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/lemlib/logger/telemetrySink.hpp include/pros/misc.hpp \
  include/robot/clamp.h include/robot/roller.h include/robot/intake.h \
  include/pros/optical.hpp include/pros/distance.hpp include/robot/wall.h \
- include/globals.h
+ include/robot/selector.h include/pros/llemu.hpp include/robot/intake.h \
+ include/robot/doinker.h include/globals.h
 include/main.h:
 include/api.h:
 include/pros/adi.h:
@@ -274,4 +275,8 @@ include/robot/intake.h:
 include/pros/optical.hpp:
 include/pros/distance.hpp:
 include/robot/wall.h:
+include/robot/selector.h:
+include/pros/llemu.hpp:
+include/robot/intake.h:
+include/robot/doinker.h:
 include/globals.h:

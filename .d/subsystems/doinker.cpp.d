@@ -1,5 +1,5 @@
-bin/subsystems/clamp.cpp.o: src/subsystems/clamp.cpp \
- include/robot/clamp.h include/pros/adi.hpp include/pros/adi.h \
+bin/subsystems/doinker.cpp.o: src/subsystems/doinker.cpp \
+ include/robot/doinker.h include/pros/adi.hpp include/pros/adi.h \
  include/pros/rtos.hpp include/pros/rtos.h include/globals.h \
  include/pros/rtos.hpp include/pros/misc.hpp include/pros/misc.h \
  include/pros/motors.hpp include/pros/motors.h include/pros/adi.hpp \
@@ -81,7 +81,7 @@ bin/subsystems/clamp.cpp.o: src/subsystems/clamp.cpp \
  include/robot/intake.h include/pros/optical.hpp include/pros/optical.h \
  include/pros/error.h include/pros/distance.hpp include/pros/distance.h \
  include/robot/intake.h include/robot/wall.h include/robot/doinker.h
-include/robot/clamp.h:
+include/robot/doinker.h:
 include/pros/adi.hpp:
 include/pros/adi.h:
 include/pros/rtos.hpp:

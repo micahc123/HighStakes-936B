@@ -5,7 +5,7 @@ namespace subsystems {
 Selector::Selector(Intake* intake) 
     : intake(intake), current_page(COLOR_PAGE) {}
 
-void Selector::initialize() {
+void Selector::init() {
     pros::lcd::initialize();
     draw_color_selector();
 }

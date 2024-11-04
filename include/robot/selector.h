@@ -9,7 +9,7 @@ namespace subsystems {
 class Selector {
 public:
     Selector(Intake* intake);
-    void init();
+    void init();  
     void update();
     
 private:
