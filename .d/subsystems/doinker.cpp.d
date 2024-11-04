@@ -79,8 +79,8 @@ bin/subsystems/doinker.cpp.o: src/subsystems/doinker.cpp \
  include/display/lv_objx/lv_arc.h include/display/lv_objx/lv_calendar.h \
  include/display/lv_objx/lv_spinbox.h include/display/lv_objx/lv_ta.h \
  include/robot/intake.h include/pros/optical.hpp include/pros/optical.h \
- include/pros/error.h include/pros/distance.hpp include/pros/distance.h \
- include/robot/intake.h include/robot/wall.h include/robot/doinker.h
+ include/pros/error.h include/robot/intake.h include/robot/wall.h \
+ include/robot/doinker.h
 include/robot/doinker.h:
 include/pros/adi.hpp:
 include/pros/adi.h:
@@ -233,8 +233,6 @@ include/robot/intake.h:
 include/pros/optical.hpp:
 include/pros/optical.h:
 include/pros/error.h:
-include/pros/distance.hpp:
-include/pros/distance.h:
 include/robot/intake.h:
 include/robot/wall.h:
 include/robot/doinker.h:

@@ -3,13 +3,11 @@
 
 namespace subsystems {
 
-Intake::Intake(int port, int color_sensor_port, int distance_sensor_port)
+Intake::Intake(int port, int top_color_sensor_port)
     : intake_motor(port), 
-      color_sensor(color_sensor_port),
-      distance_sensor(distance_sensor_port),
+      top_color_sensor(top_color_sensor_port),
       active(false),
-      target_color(DONUT_COLOR::NONE),
-      color_detected(false) {}
+      target_color(DONUT_COLOR::NONE) {}
 
 void Intake::move_forward() {
     intake_motor.move_voltage(12000);
@@ -52,32 +50,15 @@ void Intake::run() {
         deactivate();
     }
 
-    if (active) {
-        int hue = color_sensor.get_hue();
-        int distance = distance_sensor.get();
+    if (active && target_color != DONUT_COLOR::NONE) {
+        int top_hue = top_color_sensor.get_hue();
         
-        if (!color_detected) {
-            if (hue < 30) {  
-                donut_queue.push(DONUT_COLOR::RED);
-                color_detected = true;
-            } else if (hue > 210) {  
-                donut_queue.push(DONUT_COLOR::BLUE);
-                color_detected = true;
-            }
-        } else if (hue > 30 && hue < 210) {
-            color_detected = false;
-        }
-
-        if (distance < 50 && !donut_queue.empty()) {
-            DONUT_COLOR front_donut = donut_queue.front();
-            
-            if ((target_color == DONUT_COLOR::RED && front_donut == DONUT_COLOR::BLUE) ||
-                (target_color == DONUT_COLOR::BLUE && front_donut == DONUT_COLOR::RED)) {
-                stop();
-                pros::delay(100);
-                move_forward();
-            }
-            donut_queue.pop();  
+        if ((target_color == DONUT_COLOR::RED && top_hue > 210) ||  
+            (target_color == DONUT_COLOR::BLUE && top_hue < 30)) {
+            pros::delay(15);
+            stop();
+            pros::delay(20);  
+            move_forward();    
         }
     }
 }

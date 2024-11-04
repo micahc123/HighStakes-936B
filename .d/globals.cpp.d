@@ -78,8 +78,8 @@ bin/globals.cpp.o: src/globals.cpp include/globals.h \
  include/display/lv_objx/lv_arc.h include/display/lv_objx/lv_calendar.h \
  include/display/lv_objx/lv_spinbox.h include/display/lv_objx/lv_ta.h \
  include/robot/intake.h include/pros/optical.hpp include/pros/optical.h \
- include/pros/error.h include/pros/distance.hpp include/pros/distance.h \
- include/robot/intake.h include/robot/wall.h include/robot/doinker.h
+ include/pros/error.h include/robot/intake.h include/robot/wall.h \
+ include/robot/doinker.h
 include/globals.h:
 include/pros/rtos.hpp:
 include/pros/rtos.h:
@@ -231,8 +231,6 @@ include/robot/intake.h:
 include/pros/optical.hpp:
 include/pros/optical.h:
 include/pros/error.h:
-include/pros/distance.hpp:
-include/pros/distance.h:
 include/robot/intake.h:
 include/robot/wall.h:
 include/robot/doinker.h:
