@@ -3,7 +3,8 @@
 
 #include "pros/optical.hpp"
 #include "pros/distance.hpp"
-#include "pros/motors.hpp"  // Add this include for pros::Motor
+#include "pros/motors.hpp"
+#include <queue>
 
 namespace subsystems {
 
@@ -27,6 +28,8 @@ private:
     pros::Distance distance_sensor;
     bool active;
     DONUT_COLOR target_color;
+    std::queue<DONUT_COLOR> donut_queue;  // Track donuts in the intake
+    bool color_detected;  // Flag to prevent multiple detections of same donut
 };
 
 }
