@@ -6,7 +6,8 @@
 namespace subsystems {
 
 Movement::Movement(lemlib::Chassis* chassis)
-    : chassis(chassis) {}
+    : chassis(chassis) {    }
+
 
 void Movement::tank_drive(double leftY, double rightY) {
     chassis->tank(leftY, rightY);

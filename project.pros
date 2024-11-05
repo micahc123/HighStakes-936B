@@ -351,7 +351,8 @@
       }
     },
     "upload_options": {
-      "description": "936B VEX"
+      "description": "936B VEX",
+      "icon": "planet"
     },
     "use_early_access": false
   }

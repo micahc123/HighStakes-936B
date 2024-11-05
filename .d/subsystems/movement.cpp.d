@@ -78,8 +78,8 @@ bin/subsystems/movement.cpp.o: src/subsystems/movement.cpp \
  include/display/lv_objx/lv_arc.h include/display/lv_objx/lv_calendar.h \
  include/display/lv_objx/lv_spinbox.h include/display/lv_objx/lv_ta.h \
  include/robot/intake.h include/pros/optical.hpp include/pros/optical.h \
- include/pros/error.h include/pros/distance.hpp include/pros/distance.h \
- include/robot/intake.h include/robot/wall.h include/robot/doinker.h
+ include/pros/error.h include/robot/intake.h include/robot/wall.h \
+ include/robot/doinker.h
 include/robot/movement.h:
 include/pros/motors.hpp:
 include/pros/motors.h:
@@ -232,8 +232,6 @@ include/robot/intake.h:
 include/pros/optical.hpp:
 include/pros/optical.h:
 include/pros/error.h:
-include/pros/distance.hpp:
-include/pros/distance.h:
 include/robot/intake.h:
 include/robot/wall.h:
 include/robot/doinker.h:

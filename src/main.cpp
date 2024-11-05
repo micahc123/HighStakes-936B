@@ -4,7 +4,7 @@
 using namespace subsystems;
 
 void initialize() {
-    selector.init();
+    //selector.init();
     chassis.calibrate();
     chassis.setPose(0, 0, 0);
 
@@ -15,7 +15,6 @@ void disabled() {}
 void competition_initialize() {}
 
 void autonomous() {
-    // Autonomous code has been removed.
 }
 
 void opcontrol() {

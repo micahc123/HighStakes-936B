@@ -22,15 +22,12 @@
 #define DOINKER_PORT 'A'    
 #define LEFT_MOTOR_1 1
 #define LEFT_MOTOR_2 2
-#define LEFT_MOTOR_3 3
-#define RIGHT_MOTOR_1 4
-#define RIGHT_MOTOR_2 5
-#define RIGHT_MOTOR_3 6
+#define RIGHT_MOTOR_1 3
+#define RIGHT_MOTOR_2 4
 #define INTAKE_MOTOR 7
 #define ROLLER_MOTOR 8
 #define WALL_MOTOR 9
 #define INTAKE_COLOR_SENSOR_PORT 1
-#define INTAKE_DISTANCE_SENSOR_PORT 2
 
 
 //controller
@@ -68,10 +65,8 @@ namespace subsystems {
 // motors
 extern pros::Motor leftFrontMotor;
 extern pros::Motor leftBackMotor;
-extern pros::Motor leftTopMotor;
 extern pros::Motor rightFrontMotor;
 extern pros::Motor rightBackMotor;
-extern pros::Motor rightTopMotor;
 extern pros::MotorGroup leftMotors;
 extern pros::MotorGroup rightMotors;
 
