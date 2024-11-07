@@ -79,7 +79,8 @@ bin/subsystems/intake.cpp.o: src/subsystems/intake.cpp \
  include/display/lv_objx/lv_arc.h include/display/lv_objx/lv_preload.h \
  include/display/lv_objx/lv_arc.h include/display/lv_objx/lv_calendar.h \
  include/display/lv_objx/lv_spinbox.h include/display/lv_objx/lv_ta.h \
- include/robot/intake.h include/robot/wall.h include/robot/doinker.h
+ include/robot/auton.h include/robot/intake.h include/robot/wall.h \
+ include/robot/doinker.h
 include/robot/intake.h:
 include/pros/optical.hpp:
 include/pros/optical.h:
@@ -231,6 +232,7 @@ include/display/lv_objx/lv_arc.h:
 include/display/lv_objx/lv_calendar.h:
 include/display/lv_objx/lv_spinbox.h:
 include/display/lv_objx/lv_ta.h:
+include/robot/auton.h:
 include/robot/intake.h:
 include/robot/wall.h:
 include/robot/doinker.h:

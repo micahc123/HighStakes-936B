@@ -39,8 +39,6 @@
 #define DIGITAL_B pros::E_CONTROLLER_DIGITAL_B
 #define DIGITAL_X pros::E_CONTROLLER_DIGITAL_X
 #define DIGITAL_Y pros::E_CONTROLLER_DIGITAL_Y
-
-
 #define ANALOG_LEFT_Y pros::E_CONTROLLER_ANALOG_LEFT_Y
 #define ANALOG_RIGHT_Y pros::E_CONTROLLER_ANALOG_RIGHT_Y
 
@@ -59,6 +57,7 @@ namespace subsystems {
     class Wall;
     class Doinker;
     class Selector;
+    class Auton;
 }
 
 
@@ -83,6 +82,7 @@ extern subsystems::Wall wall;
 extern subsystems::Intake intake;
 extern subsystems::Selector selector;
 extern subsystems::Doinker doinker;
+extern subsystems::Auton auton;
 // chassis
 extern lemlib::Drivetrain drivetrain;
 

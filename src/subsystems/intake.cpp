@@ -39,6 +39,7 @@ void Intake::set_target_color(DONUT_COLOR color) {
     target_color = color;
 }
 
+
 void Intake::run() {
     if (master.get_digital(DIGITAL_L2)) {
         move_forward();
@@ -49,7 +50,7 @@ void Intake::run() {
     } else {
         deactivate();
     }
-
+    /*
     if (active && target_color != DONUT_COLOR::NONE) {
         int top_hue = top_color_sensor.get_hue();
         
@@ -61,6 +62,7 @@ void Intake::run() {
             move_forward();    
         }
     }
+    */
 }
 
 }

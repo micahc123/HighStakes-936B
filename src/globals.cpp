@@ -56,5 +56,6 @@ subsystems::Clamp clamp(CLAMP_PORT_LEFT, CLAMP_PORT_RIGHT);
 subsystems::Roller roller(ROLLER_MOTOR);
 subsystems::Intake intake(INTAKE_MOTOR, INTAKE_COLOR_SENSOR_PORT);
 subsystems::Wall wall(WALL_MOTOR);
-subsystems::Selector selector(&intake);
+subsystems::Auton auton(&chassis);
+subsystems::Selector selector(&intake, &auton);
 subsystems::Doinker doinker(DOINKER_PORT);
