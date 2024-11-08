@@ -24,7 +24,7 @@ bool Roller::is_active() const {
     return active;
 }
 void Roller::run() {
-    if (master.get_digital_new_press(DIGITAL_L1) && master.get_digital(DIGITAL_R1)) {
+    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
         if (!is_active()) {
             activate();
         } else {
