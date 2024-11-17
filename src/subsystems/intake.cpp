@@ -3,18 +3,18 @@
 
 namespace subsystems {
 
-Intake::Intake(int port, int top_color_sensor_port)
+Intake::Intake(int port, int color_sensor_port)
     : intake_motor(port), 
-      top_color_sensor(top_color_sensor_port),
+      color_sensor(color_sensor_port),
       active(false),
       target_color(DONUT_COLOR::NONE) {}
 
 void Intake::move_forward() {
-    intake_motor.move_voltage(12000);
+    intake_motor.move_voltage(-12000);
 }
 
 void Intake::move_backward() {
-    intake_motor.move_voltage(-12000);
+    intake_motor.move_voltage(12000);
 }
 
 void Intake::stop() {
@@ -47,22 +47,33 @@ void Intake::run() {
     } else if (master.get_digital(DIGITAL_L1)) {
         move_backward();
         active = true;
+    } else if (master.get_digital(DIGITAL_DOWN)) {
+        active = true;
+        move_forward();
+        
+        while (true) {
+            int hue = color_sensor.get_hue();
+            
+            if ((hue > 210) || (hue < 30)) {
+                pros::delay(15);
+                stop();
+                break;
+            }
+            pros::delay(10);
+        }
     } else {
         deactivate();
     }
-    /*
+    
     if (active && target_color != DONUT_COLOR::NONE) {
-        int top_hue = top_color_sensor.get_hue();
+        int hue = color_sensor.get_hue();
         
-        if ((target_color == DONUT_COLOR::RED && top_hue > 210) ||  
-            (target_color == DONUT_COLOR::BLUE && top_hue < 30)) {
+        if ((target_color == DONUT_COLOR::RED && hue > 210) ||  
+            (target_color == DONUT_COLOR::BLUE && hue < 30)) {
             pros::delay(15);
             stop();
-            pros::delay(20);  
-            move_forward();    
         }
     }
-    */
 }
 
 }

@@ -23,12 +23,13 @@ void Roller::set_voltage(int voltage) {
 bool Roller::is_active() const {
     return active;
 }
+
 void Roller::run() {
-    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_UP)) {
-        if (!is_active()) {
-            activate();
+    if (master.get_digital_new_press(DIGITAL_UP)) {
+        if (active) {
+            deactivate();
         } else {
-            deactivate();       
+            activate();
         }
     }
 }

@@ -74,7 +74,8 @@ bin/subsystems/selector.cpp.o: src/subsystems/selector.cpp \
  include/fmt/core.h include/fmt/format-inl.h \
  include/lemlib/logger/baseSink.hpp include/fmt/args.h \
  include/lemlib/logger/message.hpp include/lemlib/logger/infoSink.hpp \
- include/lemlib/logger/telemetrySink.hpp
+ include/lemlib/logger/telemetrySink.hpp include/pros/screen.hpp \
+ include/pros/screen.h include/pros/colors.h
 include/robot/selector.h:
 include/pros/llemu.hpp:
 include/pros/llemu.h:
@@ -217,3 +218,6 @@ include/fmt/args.h:
 include/lemlib/logger/message.hpp:
 include/lemlib/logger/infoSink.hpp:
 include/lemlib/logger/telemetrySink.hpp:
+include/pros/screen.hpp:
+include/pros/screen.h:
+include/pros/colors.h:

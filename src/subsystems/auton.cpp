@@ -48,6 +48,7 @@ void Auton::run_red_right() {
     clamp.declamp_stake();
 }
 
+
 void Auton::run_blue_left() {
     //chassis->follow(blue_left_txt, 2.0, 10000, true, false);
 }

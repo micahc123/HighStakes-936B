@@ -10,7 +10,7 @@ Movement::Movement(lemlib::Chassis* chassis)
 
 
 void Movement::tank_drive(double leftY, double rightY) {
-    chassis->tank(leftY, rightY);
+    chassis->tank(-leftY, rightY);
 }
 
 } 

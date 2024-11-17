@@ -10,7 +10,7 @@ enum class DONUT_COLOR { NONE, RED, BLUE };
 
 class Intake {
 public:
-    Intake(int port, int top_color_sensor_port);
+    Intake(int port, int color_sensor_port);
     void move_forward();
     void move_backward();
     void run();
@@ -22,7 +22,7 @@ public:
 
 private:
     pros::Motor intake_motor;
-    pros::Optical top_color_sensor;  // Only keeping one color sensor
+    pros::Optical color_sensor;  
     bool active;
     DONUT_COLOR target_color;
 };

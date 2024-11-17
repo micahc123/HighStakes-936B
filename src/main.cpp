@@ -4,9 +4,9 @@
 using namespace subsystems;
 
 void initialize() {
-    //selector.init();
     chassis.calibrate();
     chassis.setPose(0, 0, 0);
+    selector.init();
 
 }
 

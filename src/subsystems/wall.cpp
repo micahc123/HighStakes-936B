@@ -7,11 +7,11 @@ Wall::Wall(int motor_port)
     : wall_motor(motor_port) {}
 
 void Wall::move_forward() {
-    wall_motor.move_voltage(6000);
+    wall_motor.move_voltage(12000);
 }
 
 void Wall::move_backward() {
-    wall_motor.move_voltage(-6000);
+    wall_motor.move_voltage(-12000);
 }
 
 void Wall::stop() {

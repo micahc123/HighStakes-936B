@@ -3,26 +3,23 @@
 
 namespace subsystems {
 
-Clamp::Clamp(char port_left, char port_right)
-    : piston_left(port_left), piston_right(port_right), piston_toggle(false) {}
+Clamp::Clamp(char port)
+    : piston(port), piston_toggle(false) {}
 
 void Clamp::toggle() {
     piston_toggle = !piston_toggle;
-    piston_left.set_value(piston_toggle ? 1 : 0);
-    piston_right.set_value(piston_toggle ? 1 : 0);
+    piston.set_value(piston_toggle);
 }
 
 void Clamp::clamp_stake() {
     piston_toggle = true;
-    piston_left.set_value(1);
-    piston_right.set_value(1);
+    piston.set_value(true);
     pros::delay(500);
 }
 
 void Clamp::declamp_stake() {
     piston_toggle = false;
-    piston_left.set_value(0);
-    piston_right.set_value(0);
+    piston.set_value(false);
     pros::delay(500); 
 }
 

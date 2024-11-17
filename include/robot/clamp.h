@@ -8,7 +8,7 @@ namespace subsystems {
 
 class Clamp {
 public:
-    Clamp(char port_left, char port_right);
+    Clamp(char port);
     void toggle();
     void run();
     void clamp_stake();
@@ -16,8 +16,7 @@ public:
     bool get_state() const;
 
 private:
-    pros::ADIDigitalOut piston_left;
-    pros::ADIDigitalOut piston_right;
+    pros::ADIDigitalOut piston;
     bool piston_toggle;
 };
 

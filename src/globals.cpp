@@ -52,7 +52,7 @@ lemlib::Chassis chassis(
 );
 
 subsystems::Movement movement(&chassis);
-subsystems::Clamp clamp(CLAMP_PORT_LEFT, CLAMP_PORT_RIGHT);
+subsystems::Clamp clamp(CLAMP_PORT);
 subsystems::Roller roller(ROLLER_MOTOR);
 subsystems::Intake intake(INTAKE_MOTOR, INTAKE_COLOR_SENSOR_PORT);
 subsystems::Wall wall(WALL_MOTOR);
