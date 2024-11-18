@@ -20,7 +20,7 @@ void autonomous() {
 
 void opcontrol() {
     while (true) {
-        movement.tank_drive(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y));
+        movement.drive(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y));
         clamp.run();
         intake.run();
         roller.run();

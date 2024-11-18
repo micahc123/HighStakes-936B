@@ -11,7 +11,7 @@ namespace subsystems {
 class Movement {
 public:
     Movement(lemlib::Chassis* chassis);
-    void tank_drive(double leftY, double rightY);
+    void drive(double leftY, double rightY);
 
 
 private:

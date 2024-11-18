@@ -20,7 +20,6 @@ void Selector::draw_selector_screen() {
     lv_obj_t* screen = lv_scr_act();
     lv_obj_set_style(screen, &lv_style_plain_color);
 
-    // Define the red and blue button styles
     static lv_style_t style_btn_red;
     lv_style_copy(&style_btn_red, &lv_style_plain);
     style_btn_red.body.main_color = LV_COLOR_RED;
@@ -31,7 +30,6 @@ void Selector::draw_selector_screen() {
     style_btn_blue.body.main_color = LV_COLOR_BLUE;
     style_btn_blue.body.grad_color = LV_COLOR_BLUE;
 
-    // Draw the autonomous selection buttons
     lv_obj_t* red_auton_btn = lv_btn_create(screen, NULL);
     lv_obj_set_size(red_auton_btn, 240, 120);
     lv_obj_set_pos(red_auton_btn, 0, 0);
@@ -50,7 +48,6 @@ void Selector::draw_selector_screen() {
     lv_label_set_text(blue_auton_label, "Blue");
     lv_obj_align(blue_auton_label, NULL, LV_ALIGN_CENTER, 0, 0);
 
-    // Draw the color selection buttons
     lv_obj_t* red_color_btn = lv_btn_create(screen, NULL);
     lv_obj_set_size(red_color_btn, 240, 120);
     lv_obj_set_pos(red_color_btn, 0, 120);
@@ -74,7 +71,6 @@ void Selector::handle_selection() {
     pros::screen_touch_status_s_t status;
 
     if (status.touch_status == 1) {
-        // Handle auton selection
         if (status.y < 120) {
             if (status.x < 240) {
                 selected_auton = AUTON_ROUTINE::RED_LEFT;
@@ -89,7 +85,6 @@ void Selector::handle_selection() {
             }
         }
 
-        // Handle color selection
         if (status.y >= 120) {
             if (status.x < 240) {
                 selected_color = DONUT_COLOR::RED;
@@ -104,7 +99,6 @@ void Selector::handle_selection() {
             }
         }
 
-        // Confirm selection
         if (selected_auton != AUTON_ROUTINE::NONE && selected_color != DONUT_COLOR::NONE) {
             intake->set_target_color(selected_color);
             auton->set_selected_auton(selected_auton);
