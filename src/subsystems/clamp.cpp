@@ -14,13 +14,11 @@ void Clamp::toggle() {
 void Clamp::clamp_stake() {
     piston_toggle = true;
     piston.set_value(true);
-    pros::delay(500);
 }
 
 void Clamp::declamp_stake() {
     piston_toggle = false;
     piston.set_value(false);
-    pros::delay(500); 
 }
 
 bool Clamp::get_state() const {

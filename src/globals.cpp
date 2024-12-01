@@ -8,10 +8,12 @@ bool wallToggle = false;
 
 pros::Motor leftFrontMotor(LEFT_MOTOR_1, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor leftBackMotor(LEFT_MOTOR_2, pros::E_MOTOR_GEAR_BLUE);
+pros::Motor leftMiddleMotor(LEFT_MOTOR_3, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor rightFrontMotor(RIGHT_MOTOR_1, pros::E_MOTOR_GEAR_BLUE);
+pros::Motor rightMiddleMotor(RIGHT_MOTOR_3, pros::E_MOTOR_GEAR_BLUE);
 pros::Motor rightBackMotor(RIGHT_MOTOR_2, pros::E_MOTOR_GEAR_BLUE);
-pros::MotorGroup leftMotors({leftFrontMotor, leftBackMotor});
-pros::MotorGroup rightMotors({rightFrontMotor, rightBackMotor});
+pros::MotorGroup leftMotors({leftFrontMotor, leftMiddleMotor, leftBackMotor});
+pros::MotorGroup rightMotors({rightFrontMotor,rightMiddleMotor, rightBackMotor});
 
 pros::Controller master(pros::E_CONTROLLER_MASTER);
 
@@ -55,7 +57,7 @@ subsystems::Movement movement(&chassis);
 subsystems::Clamp clamp(CLAMP_PORT);
 subsystems::Roller roller(ROLLER_MOTOR);
 subsystems::Intake intake(INTAKE_MOTOR, INTAKE_COLOR_SENSOR_PORT);
-subsystems::Wall wall(WALL_MOTOR);
+subsystems::Wall wall(WALL_MOTOR, WALL_ROTATION_SENSOR);
 subsystems::Auton auton(&chassis);
 subsystems::Selector selector(&intake, &auton);
 subsystems::Doinker doinker(DOINKER_PORT);

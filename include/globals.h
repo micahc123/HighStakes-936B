@@ -21,12 +21,15 @@
 #define DOINKER_PORT 'G'    
 #define LEFT_MOTOR_1 13
 #define LEFT_MOTOR_2 14
+#define LEFT_MOTOR_3 15
 #define RIGHT_MOTOR_1 11
 #define RIGHT_MOTOR_2 12
+#define RIGHT_MOTOR_3 17
 #define INTAKE_MOTOR 7
 #define ROLLER_MOTOR 6
 #define WALL_MOTOR 9
 #define INTAKE_COLOR_SENSOR_PORT 1
+#define WALL_ROTATION_SENSOR 18
 
 
 //controller
@@ -41,7 +44,7 @@
 #define DIGITAL_DOWN pros::E_CONTROLLER_DIGITAL_DOWN
 #define DIGITAL_UP pros::E_CONTROLLER_DIGITAL_UP
 #define ANALOG_LEFT_Y pros::E_CONTROLLER_ANALOG_LEFT_Y
-#define ANALOG_RIGHT_Y pros::E_CONTROLLER_ANALOG_RIGHT_Y
+#define ANALOG_RIGHT_X pros::E_CONTROLLER_ANALOG_RIGHT_X
 
 // toggle variables
 extern bool pistonToggle;

@@ -9,8 +9,8 @@ Movement::Movement(lemlib::Chassis* chassis)
     : chassis(chassis) {    }
 
 
-void Movement::drive(double leftY, double rightY) {
-    chassis->arcade(-leftY, rightY);
+void Movement::drive(double leftY, double rightX) {
+    chassis->arcade(-leftY, -rightX);
 }
 
 } 

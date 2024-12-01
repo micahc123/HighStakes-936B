@@ -3,44 +3,52 @@
 
 namespace subsystems {
 
-Wall::Wall(int motor_port)
-    : wall_motor(motor_port) {}
-
-void Wall::move_forward() {
-    wall_motor.move_voltage(12000);
+Wall::Wall(int motor_port, int rotation_port)
+    : wall_motor(motor_port), rotation_sensor(rotation_port) {
+    move_to_start();
 }
 
-void Wall::move_backward() {
-    wall_motor.move_voltage(-12000);
+void Wall::move_to_position(double target) {
+    double current = rotation_sensor.get_position();
+    double error = target - current;
+    
+    if (std::abs(error) > POSITION_THRESHOLD) {
+        double kP = 30.0; 
+        int voltage = std::clamp(static_cast<int>(error * kP), -MOTOR_VOLTAGE, MOTOR_VOLTAGE);
+        wall_motor.move_voltage(voltage);
+    } else {
+        stop();
+    }
+}
+
+bool Wall::is_at_position(double target) {
+    return std::abs(rotation_sensor.get_position() - target) <= POSITION_THRESHOLD;
+}
+
+void Wall::move_to_start() {
+    move_to_position(START_POSITION);
+}
+
+void Wall::move_to_bottom() {
+    move_to_position(BOTTOM_POSITION);
+}
+
+void Wall::move_to_score() {
+    move_to_position(SCORE_POSITION);
 }
 
 void Wall::stop() {
     wall_motor.move_voltage(0);
 }
 
-bool Wall::is_active() const {
-    return active;
-}
-
-void Wall::activate() {
-    active = true;
-    move_forward();
-}
-
-void Wall::deactivate() {
-    active = false;
-    stop();
-}
 void Wall::run() {
-    if (master.get_digital(DIGITAL_R2)) {
-        move_forward();     
-        active = true;
+    if (master.get_digital(DIGITAL_R1) && master.get_digital(DIGITAL_R2)) {
+        move_to_bottom();
+    } else if (master.get_digital(DIGITAL_R2)) {
+        move_to_start();
     } else if (master.get_digital(DIGITAL_R1)) {
-        move_backward();    
-        active = true;
-    } else {
-        deactivate();      
+        move_to_score();
     }
 }
 
-} 
+}

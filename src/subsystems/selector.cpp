@@ -2,7 +2,7 @@
 #include "pros/screen.hpp"
 #include "display/lv_core/lv_obj.h"
 #include "display/lv_objx/lv_label.h"
-
+ 
 namespace subsystems {
 
 Selector::Selector(Intake* intake, Auton* auton)
