@@ -11,8 +11,8 @@ enum class DONUT_COLOR { NONE, RED, BLUE };
 class Intake {
 public:
     Intake(int port, int color_sensor_port);
-    void move_forward();
-    void move_backward();
+
+    void move();
     void run();
     void stop();
     bool is_active() const;

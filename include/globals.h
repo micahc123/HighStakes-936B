@@ -7,7 +7,6 @@
 #include "pros/adi.hpp"
 #include "robot/movement.h"
 #include "robot/clamp.h"
-#include "robot/roller.h"
 #include "robot/selector.h"
 #include "robot/intake.h"
 #include "robot/wall.h"
@@ -26,7 +25,6 @@
 #define RIGHT_MOTOR_2 12
 #define RIGHT_MOTOR_3 17
 #define INTAKE_MOTOR 7
-#define ROLLER_MOTOR 6
 #define WALL_MOTOR 9
 #define INTAKE_COLOR_SENSOR_PORT 1
 #define WALL_ROTATION_SENSOR 18
@@ -50,7 +48,6 @@
 extern bool pistonToggle;
 extern bool intakeToggle;
 extern bool climbingToggle;
-extern bool rollerToggle;
 extern bool wallToggle;
 
 namespace subsystems {
@@ -81,7 +78,6 @@ extern pros::ADIDigitalOut piston;
 // subsystem
 extern subsystems::Movement movement;
 extern subsystems::Clamp clamp;
-extern subsystems::Roller roller;
 extern subsystems::Wall wall;
 extern subsystems::Intake intake;
 extern subsystems::Selector selector;

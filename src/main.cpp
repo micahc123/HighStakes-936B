@@ -6,6 +6,7 @@ using namespace subsystems;
 void initialize() {
     chassis.calibrate();
     chassis.setPose(0, 0, 0);
+    selector.init();
 
 }
 
@@ -22,7 +23,6 @@ void opcontrol() {
         movement.drive(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X), master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
         clamp.run();
         intake.run();
-        roller.run();
         wall.run();
         doinker.run();
         pros::delay(10);

@@ -41,7 +41,6 @@
  */
 #include "robot/movement.h"
 #include "robot/clamp.h"
-#include "robot/roller.h"
 #include "robot/intake.h"
 #include "robot/wall.h"
 #include "robot/selector.h"

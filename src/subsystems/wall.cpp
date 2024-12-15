@@ -11,7 +11,7 @@ Wall::Wall(int motor_port, int rotation_port)
 void Wall::move_to_position(double target) {
     double current = rotation_sensor.get_position();
     double error = target - current;
-    
+    //pid for smoother movement
     if (std::abs(error) > POSITION_THRESHOLD) {
         double kP = 30.0; 
         int voltage = std::clamp(static_cast<int>(error * kP), -MOTOR_VOLTAGE, MOTOR_VOLTAGE);
