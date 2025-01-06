@@ -5,7 +5,7 @@
 
 namespace subsystems {
 
-enum class AUTON_ROUTINE { NONE, RED_LEFT, RED_RIGHT, BLUE_LEFT, BLUE_RIGHT };
+enum class AUTON_ROUTINE { NONE, RED_LEFT, RED_RIGHT, BLUE_LEFT, BLUE_RIGHT, SKILLS };
 
 
 class Auton {
@@ -22,6 +22,7 @@ private:
     void run_red_right();
     void run_blue_left();
     void run_blue_right();
+    void run_skills();
 };
 
 } // namespace subsystems

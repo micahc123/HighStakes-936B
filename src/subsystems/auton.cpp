@@ -14,7 +14,7 @@ ASSET(red_right_part_2_text);
 
 namespace subsystems {
 
-Auton::Auton(lemlib::Chassis* chassis) : chassis(chassis), selected_auton(AUTON_ROUTINE::RED_LEFT) {}
+Auton::Auton(lemlib::Chassis* chassis) : chassis(chassis), selected_auton(AUTON_ROUTINE::NONE) {}
 
 void Auton::run_red_left() {
     chassis->follow(red_left_part_1_text, 10.0, 3000);
@@ -48,13 +48,28 @@ void Auton::run_red_right() {
     clamp.declamp_stake();
 }
 
-
 void Auton::run_blue_left() {
     //chassis->follow(blue_left_txt, 2.0, 10000, true, false);
 }
 
 void Auton::run_blue_right() {
     //chassis->follow(blue_right_txt, 2.0, 10000, true, false);
+}
+
+void Auton::run_skills() {
+    // TODO: Implement skills autonomous routine
+    // This is a placeholder for the skills autonomous routine
+    // Add your skills autonomous code here
+    chassis->setPose(0, 0, 0);  // Reset position
+    
+    // Example skills routine - replace with actual implementation
+    for (int i = 0; i < 2; i++) {
+        // Run modified red left routine
+        run_red_left();
+        // Run modified red right routine
+        run_red_right();
+        // Add additional skills-specific movements and actions
+    }
 }
 
 void Auton::run_auton(AUTON_ROUTINE routine) {
@@ -71,12 +86,18 @@ void Auton::run_auton(AUTON_ROUTINE routine) {
         case AUTON_ROUTINE::BLUE_RIGHT:
             run_blue_right();
             break;
+        case AUTON_ROUTINE::SKILLS:
+            run_skills();
+            break;
+        case AUTON_ROUTINE::NONE:
+            break;
     }
 }
 
 void Auton::set_selected_auton(AUTON_ROUTINE routine) {
     selected_auton = routine;
 }
+
 AUTON_ROUTINE Auton::get_selected_auton() {
     return selected_auton;
 }
