@@ -25,6 +25,7 @@ void opcontrol() {
         intake.run();
         wall.run();
         doinker.run();
+        selector.update();
         pros::delay(10);
     }
 }

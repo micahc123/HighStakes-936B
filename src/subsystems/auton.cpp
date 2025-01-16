@@ -57,19 +57,8 @@ void Auton::run_blue_right() {
 }
 
 void Auton::run_skills() {
-    // TODO: Implement skills autonomous routine
-    // This is a placeholder for the skills autonomous routine
-    // Add your skills autonomous code here
-    chassis->setPose(0, 0, 0);  // Reset position
-    
-    // Example skills routine - replace with actual implementation
-    for (int i = 0; i < 2; i++) {
-        // Run modified red left routine
-        run_red_left();
-        // Run modified red right routine
-        run_red_right();
-        // Add additional skills-specific movements and actions
-    }
+
+    chassis->setPose(0, 0, 0);  
 }
 
 void Auton::run_auton(AUTON_ROUTINE routine) {

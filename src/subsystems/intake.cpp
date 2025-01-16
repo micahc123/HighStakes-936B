@@ -10,7 +10,11 @@ Intake::Intake(int port, int color_sensor_port)
       target_color(DONUT_COLOR::NONE) {}
 
 void Intake::move() {
-    intake_motor.move_voltage(-10000);
+    intake_motor.move_voltage(-12000);
+}
+
+void Intake::move_reverse() {
+    intake_motor.move_voltage(12000);
 }
 
 void Intake::stop() {
@@ -40,62 +44,21 @@ void Intake::run() {
         active = !active;
         if (active) {
             move();
-            pros::lcd::print(1, "Intake: Active");
         } else {
             stop();
-            pros::lcd::print(1, "Intake: Inactive");
         }
     }
-    
-    // New color detection logic
-    if (active) {
-        int hue = color_sensor.get_hue();
-        static bool color_detected = false;
-        static uint32_t detection_time = 0;
-        static uint32_t stop_time = 0;
-        
-        pros::lcd::print(2, "Hue: %d", hue);
-        
-        if (hue > 200 && hue < 240) {
-            if (!color_detected) {
-                color_detected = true;
-                detection_time = pros::millis();
-                stop_time = detection_time + 100;
-                pros::lcd::print(3, "Blue detected! Waiting to stop");
-            }
-            
-            if (pros::millis() >= stop_time && color_detected) {
-                stop();
-                pros::lcd::print(3, "Stopping after delay");
-            }
-            
-                        if (pros::millis() - detection_time > 120) {
-                move();
-                color_detected = false;
-                pros::lcd::print(3, "Resuming movement");
-            }
-        } else {
-            if (!color_detected) {
-                move();  
-                pros::lcd::print(3, "No color detected - Moving");
-            }
-        }
+    if (master.get_digital(DIGITAL_L2)) {
+        move_reverse();
+        active = false;  
+    } else if (active) { 
+        move();
+    } else {
+        stop();
     }
-}
 
-/* Old color sorting code updated with similar timing logic
-void Intake::run() {
-    if (master.get_digital_new_press(DIGITAL_L1)) {
-        active = !active;
-        if (active) {
-            move();
-            pros::lcd::print(1, "Intake: Active");
-        } else {
-            stop();
-            pros::lcd::print(1, "Intake: Inactive");
-        }
-    }
-    
+    /*
+    // Handle color sorting when active
     if (active && target_color != DONUT_COLOR::NONE) {
         int hue = color_sensor.get_hue();
         static bool color_detected = false;
@@ -134,7 +97,8 @@ void Intake::run() {
             }
         }
     }
+    */
+
 }
-*/
 
 }

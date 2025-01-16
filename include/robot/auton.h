@@ -5,8 +5,16 @@
 
 namespace subsystems {
 
-enum class AUTON_ROUTINE { NONE, RED_LEFT, RED_RIGHT, BLUE_LEFT, BLUE_RIGHT, SKILLS };
-
+// Values match the button map indices:
+// Front (0) = RED_LEFT/BLUE_LEFT (1/-1)
+// Back (1) = RED_RIGHT/BLUE_RIGHT (2/-2)
+// Do Nothing (2) = NONE (3/-3)
+enum class AUTON_ROUTINE { 
+    SKILLS = 0,
+    RED_LEFT = 1, BLUE_LEFT = -1,
+    RED_RIGHT = 2, BLUE_RIGHT = -2,
+    NONE = 3
+};
 
 class Auton {
 public:

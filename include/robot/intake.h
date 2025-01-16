@@ -13,12 +13,14 @@ public:
     Intake(int port, int color_sensor_port);
 
     void move();
+    void move_reverse();
     void run();
     void stop();
     bool is_active() const;
     void activate();
     void deactivate();
     void set_target_color(DONUT_COLOR color);
+    pros::Optical& get_color_sensor() { return color_sensor; }
 
 private:
     pros::Motor intake_motor;

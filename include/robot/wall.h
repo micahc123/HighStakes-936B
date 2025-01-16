@@ -1,35 +1,40 @@
 #ifndef WALL_H
 #define WALL_H
+
 #include "pros/motors.hpp"
-#include "pros/rotation.hpp"
 
 namespace subsystems {
 
 class Wall {
 public:
-    Wall(int motor_port, int rotation_port);
-    
-    void move_to_start();    
-    void move_to_bottom();  
-    void move_to_score();   
-    
+    Wall(int left_port, int right_port);
     void run();
-    void stop();
+
+    // Target positions in encoder ticks
+    static constexpr int START_POS = 0;      // Starting/default position
+    static constexpr int DOWN_POS = -200;    // Down position (adjust this)
+    static constexpr int SCORE_POS = 400;    // Score position (adjust this)
     
+    // PID constants - tune these
+    static constexpr double kP = 0.5;  // Increase to make movement more aggressive
+    static constexpr double kI = 0.001; // Increase to reduce steady-state error
+    static constexpr double kD = 0.1;   // Increase to reduce oscillation
+    
+    // Tolerance for position
+    static constexpr int POSITION_TOLERANCE = 5;
+
 private:
-    static constexpr int START_POSITION = 0;    
-    static constexpr int BOTTOM_POSITION = 900;  
-    static constexpr int SCORE_POSITION = 450;   
+    pros::Motor left_wall_motor;
+    pros::Motor right_wall_motor;
+    int target_position;
+    double integral;
+    double prev_error;
     
-    static constexpr int POSITION_THRESHOLD = 5;  
-    static constexpr int MOTOR_VOLTAGE = 12000; 
-    
-    void move_to_position(double target);
-    bool is_at_position(double target);
-    
-    pros::Motor wall_motor;
-    pros::Rotation rotation_sensor;
+    void move_to_position(int position);
+    double calculate_pid(double error);
+    void reset_pid();
 };
+
 }
 
 #endif // WALL_H
