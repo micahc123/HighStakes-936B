@@ -21,6 +21,15 @@ void autonomous() {
 void opcontrol() {
     while (true) {
         movement.drive(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X), master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
+        
+        if (master.get_digital_new_press(DIGITAL_DOWN)) {
+            auton.test_lateral();
+        }
+        if (master.get_digital_new_press(DIGITAL_RIGHT)) {
+            // Test angular controller
+            auton.test_angular();
+        }
+        
         clamp.run();
         intake.run();
         wall.run();

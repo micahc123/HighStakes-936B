@@ -21,6 +21,7 @@ public:
     void deactivate();
     void set_target_color(DONUT_COLOR color);
     pros::Optical& get_color_sensor() { return color_sensor; }
+    void sort();
 
 private:
     pros::Motor intake_motor;

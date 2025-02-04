@@ -21,8 +21,8 @@ lemlib::Drivetrain drivetrain {
     &leftMotors,
     &rightMotors,
     12.5, // track width
-    lemlib::Omniwheel::OLD_4, // wheel type
-    300,  // rpm
+    lemlib::Omniwheel::NEW_325, // wheel type
+    520,  // rpm
     2   //drift
 };
 
@@ -35,7 +35,7 @@ lemlib::OdomSensors sensors {
 };
 
 lemlib::ControllerSettings controller(
-    10,   
+    10,  //
     0,   
     20,   
     3,   
@@ -45,18 +45,28 @@ lemlib::ControllerSettings controller(
     500, 
     20  
 );
-
+lemlib::ControllerSettings angular_controller(2, // proportional gain (kP)
+                                              0, // integral gain (kI)
+                                              10, // derivative gain (kD)
+                                              0, // anti windup
+                                              0, // small error range, in inches
+                                              0, // small error range timeout, in milliseconds
+                                              0, // large error range, in inches
+                                              0, // large error range timeout, in milliseconds
+                                              0 // maximum acceleration (slew)
+                                              
+);
 lemlib::Chassis chassis(
     drivetrain,
     controller,
-    controller,
+    angular_controller,
     sensors
 );
 
 subsystems::Movement movement(&chassis);
 subsystems::Clamp clamp(CLAMP_PORT);
 subsystems::Intake intake(INTAKE_MOTOR, INTAKE_COLOR_SENSOR_PORT);
-subsystems::Wall wall(WALL_MOTOR, WALL_ROTATION_SENSOR);
+subsystems::Wall wall(WALL_MOTOR_1, WALL_MOTOR_2);
 subsystems::Auton auton(&chassis);
 subsystems::Selector selector(&intake, &auton);
 subsystems::Doinker doinker(DOINKER_PORT);

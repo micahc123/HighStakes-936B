@@ -17,15 +17,16 @@
 
 //ports
 #define CLAMP_PORT 'G'
-#define DOINKER_PORT 'A'    
+#define DOINKER_PORT 'H'    
 #define LEFT_MOTOR_1 1
-#define LEFT_MOTOR_2 17
-#define LEFT_MOTOR_3 20
-#define RIGHT_MOTOR_1 19
-#define RIGHT_MOTOR_2 12
-#define RIGHT_MOTOR_3 2
-#define INTAKE_MOTOR 7
-#define WALL_MOTOR 9
+#define LEFT_MOTOR_2 2
+#define LEFT_MOTOR_3 3
+#define RIGHT_MOTOR_1 9
+#define RIGHT_MOTOR_2 8
+#define RIGHT_MOTOR_3 7
+#define INTAKE_MOTOR 6
+#define WALL_MOTOR_1 18
+#define WALL_MOTOR_2 10
 #define INTAKE_COLOR_SENSOR_PORT 1
 #define WALL_ROTATION_SENSOR 18
 

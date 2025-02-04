@@ -22,6 +22,11 @@ public:
     AUTON_ROUTINE get_selected_auton();
     void run_auton(AUTON_ROUTINE routine);
     void set_selected_auton(AUTON_ROUTINE routine);
+    void test_lateral();  // Test lateral controller
+    void test_angular();  // Test angular controller
+    void test_lateral_long();  // Test longer distance
+    void test_angular_180();  // Test 180 degree turn
+    void test_combined();  // Test combined movement
 
 private:
     lemlib::Chassis* chassis;

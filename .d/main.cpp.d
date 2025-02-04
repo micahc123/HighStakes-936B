@@ -88,10 +88,10 @@ bin/main.cpp.o: src/main.cpp include/main.h include/api.h \
  include/lemlib/logger/message.hpp include/lemlib/logger/infoSink.hpp \
  include/lemlib/logger/telemetrySink.hpp include/pros/misc.hpp \
  include/robot/clamp.h include/robot/intake.h include/pros/optical.hpp \
- include/robot/wall.h include/robot/selector.h include/pros/llemu.hpp \
- include/robot/intake.h include/robot/auton.h \
- include/display/lv_objx/lv_btnm.h include/display/lv_objx/lv_tabview.h \
- include/robot/doinker.h include/globals.h
+ include/robot/wall.h include/robot/selector.h include/pros/screen.hpp \
+ include/display/lv_objx/lv_tabview.h include/display/lv_objx/lv_btnm.h \
+ include/robot/auton.h include/robot/intake.h include/robot/doinker.h \
+ include/globals.h
 include/main.h:
 include/api.h:
 include/pros/adi.h:
@@ -275,10 +275,10 @@ include/robot/intake.h:
 include/pros/optical.hpp:
 include/robot/wall.h:
 include/robot/selector.h:
-include/pros/llemu.hpp:
-include/robot/intake.h:
-include/robot/auton.h:
-include/display/lv_objx/lv_btnm.h:
+include/pros/screen.hpp:
 include/display/lv_objx/lv_tabview.h:
+include/display/lv_objx/lv_btnm.h:
+include/robot/auton.h:
+include/robot/intake.h:
 include/robot/doinker.h:
 include/globals.h:
