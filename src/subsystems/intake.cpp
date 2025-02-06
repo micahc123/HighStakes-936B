@@ -80,20 +80,21 @@ void Intake::sort() {
 }
 
 void Intake::run() {
+    // Toggle intake on/off when L1 is newly pressed.
     if (master.get_digital_new_press(DIGITAL_L1)) {
         active = !active;
-        if (active) {
-            move();
-        } else {
-            stop();
-        }
     }
+    
+    // If L2 is pressed, run the motor in reverse.
     if (master.get_digital(DIGITAL_L2)) {
         move_reverse();
-        active = false;  
-    } else if (active) { 
+    }
+    // Otherwise, if intake is active, run it forward.
+    else if (active) {
         move();
-    } else {
+    }
+    // If not active, stop the motor.
+    else {
         stop();
     }
 }

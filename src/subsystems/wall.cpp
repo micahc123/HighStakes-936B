@@ -9,7 +9,10 @@ Wall::Wall(int left_port, int right_port)
       target_position(START_POS) {
     left_wall_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     right_wall_motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    left_wall_motor.set_reversed(true);
+    
+    // Only reverse the right motor
+    left_wall_motor.set_reversed(false);
+    right_wall_motor.set_reversed(true);
     
     left_wall_motor.tare_position();
     right_wall_motor.tare_position();
@@ -26,7 +29,8 @@ Wall::Wall(int left_port, int right_port)
 }
 
 void Wall::set_target_position(int position) {
-    target_position = position * GEAR_RATIO;
+    // Never allow target position to go below STOW_POS
+    target_position = std::max(position, STOW_POS) * GEAR_RATIO;
 }
 
 void Wall::update_position() {
@@ -36,6 +40,11 @@ void Wall::update_position() {
     if (std::abs(error) > 5) {
         double kp = 0.2;
         double velocity = std::clamp(kp * error, -100.0, 100.0);  
+        
+        // Prevent movement below STOW_POS (0)
+        if (current_pos <= STOW_POS && velocity < 0) {
+            velocity = 0;
+        }
         
         left_wall_motor.move(velocity);
         right_wall_motor.move(velocity);
@@ -55,6 +64,9 @@ void Wall::run() {
     if (master.get_digital_new_press(DIGITAL_R2)) {
         set_target_position(START_POS);
     }
+    if (master.get_digital_new_press(DIGITAL_Y)) {
+        printf("Y pressed! Setting descore position to %d\n", DESCORE_POS);
+        set_target_position(DESCORE_POS);
+    }
 }
-
 }

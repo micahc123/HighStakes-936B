@@ -19,11 +19,12 @@ private:
     
     double target_position;
     
-    static constexpr int START_POS = 0;
-    static constexpr int SCORE_POS = 360;  
-    static constexpr int STOW_POS = -30; 
-    
+    static constexpr int START_POS = 40;
+    static constexpr int SCORE_POS = 340;  
+    static constexpr int STOW_POS = 0;
+    static constexpr int DESCORE_POS = 550;  
     static constexpr double GEAR_RATIO = 3.0; 
+    
 };
 
 }
